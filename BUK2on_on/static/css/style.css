@@ -31,12 +31,46 @@ footer {
 .main_title {
   font-size: 3rem; 
   font-family: Georgia, 'Times New Roman', Times, serif;
-
   z-index: 4;
   color : rgb(54, 93, 3);
   font-style: italic;
 }
 
 .body_text {
-  font-size: 1.5rem; 
+  font-size: 1.2rem; 
+}
+
+.whoweare{
+  opacity: 0.7;
+  font-family: Georgia, 'Times New Roman', Times, serif; 
+  font-style: italic;
+  color :white;
+  position : absolute;
+  text-align: right;
+  top: 400px;
+  animation : slide 1.5s ease-out;
+  left : 4.3rem;
+}
+
+
+@keyframes slide{
+  from{
+      left: -100px;
+      opacity: 0;
+  }
+  to {
+      left : 4.3rem;
+      opacity: 0.7;
+  }
+}
+
+@keyframes disappear {
+  from{
+      left :  4.3rem;
+      opacity: 0.7;
+  }
+  to {
+      left: -100px;
+      opacity: 0;
+  }
 }
