@@ -5,7 +5,6 @@ from .models import Restaurant
 # Create your views here.
 def index(request):
     recommends = Restaurant.objects.all()
-    print(recommends)
     context ={
         'recommends' : recommends,
     }
@@ -19,3 +18,7 @@ def detail(request, restaurant_pk ):
         'recommend' : recommend,
     }
     return render(request, 'recommends/detail.html', context)
+
+
+def whoweare(request):
+    return render(request, "recommends/whoweare.html")
