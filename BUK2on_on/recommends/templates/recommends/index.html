@@ -3,28 +3,35 @@
 
 
 {% block content %}
+<div>
+    <img src=" {% static 'main_image.jpg' %} " alt="no image"  class='background_main_image'>
+</div> 
 <section >
-    <h3 class="whoweare" > Recommendation List 
-        <br>8th_SSAFY_BUK_2 members made</br></h3>
+    <h3 class="whoweare" style="font-size:4rem;" > Recommendations 
+        <p style="margin:0.1rem;"></p>
+        <span style="font-size:1.2rem;">8th_SSAFY_BUK_2 members made</span></h3>
 </section>
 
-<p class="main_title" >BUK2 on&on Guide's Symbols mean</p>
-<hr>
-<div style="border:1px solid; padding:2rem; color:black"></div>
-<section>
-    <P class="body_text" style='font-family: Gowun Batang, serif;'>
-        ★★★ _ 맛을 보기 위해 여행을 떠날만한 식당
-    </P>
-    <P class="body_text" style='font-family: Gowun Batang, serif;'>
-        ★★ _ 멀리서 찾아갈 만한 식당
-    </P>
-    <P class="body_text" style='font-family: Gowun Batang, serif;'>
-        ★ _ 요리가 훌륭한 식당
-    </P>
-    <P class="body_text" style='font-family: Gowun Batang, serif;'>
-        none _ 합리적인 가격을 가진 식당
-    </P>
-</section>
+<div style="margin:30rem;"></div>
+
+<div class="info_bottom">
+    <div class="green_box">
+        <p class="guide_symbols" >BUK2 on&on Guide's 
+            <br> Symbols mean</br>
+        </p>
+    </div>
+    
+
+    <div class="guide_text">
+            ★★★ &nbsp _&nbsp&nbsp&nbsp맛을 보기 위해 여행을 떠날만한 식당
+            <br>★★ &nbsp&nbsp&nbsp&nbsp _&nbsp&nbsp&nbsp멀리서 찾아갈 만한 식당 
+            <br>★ &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp _&nbsp&nbsp&nbsp요리가 훌륭한 식당
+            <br>none &nbsp&nbsp&nbsp _&nbsp&nbsp&nbsp합리적인 가격을 가진 식당
+    </div>
+
+</div>
+
+<div style="margin:50rem;"></div>
 
 {% comment %} {% for recommend in recommends %}
     <div>
