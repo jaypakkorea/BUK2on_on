@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<div style="margin:12rem;"></div>
+
+<div class="container">
+    <h1 style="font-size:4.5rem; -webkit-text-stroke-width: 0.2rem;-webkit-text-stroke-color: rgb(102, 0, 102); color:black;">N E W</h1>
+    <p></p>
+    <p></p>
+    <br>
+    <form id="post_form" action="{% url 'recommends:create' %}" method="POST"  enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        {{Recommendform.as_p}}
+        {{ formset.management_form }}
+
+        {% for form in formset %}
+            <br>{{ form }}
+        {% endfor %}
+
+        <div style="margin:8rem;"></div>
+
+        <input type="submit" value="SUBMIT" class="btn btn-link">
+    <hr>
+</div>
+  
+{% endblock content %}
+

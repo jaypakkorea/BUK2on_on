@@ -36,26 +36,24 @@
                             Account
                             </a>
                             <ul class="dropdown-menu">
+                                {% if request.user.is_authenticated%}
                                 <li>
-                                    <form action="#" method = "#">
-                                    <input type="submit" value="login"  style="color:gray;" class="dropdown-item">
-                                    </form>
+                                  <form action="{% url 'accounts:logout' %}" method = "POST">
+                                    {% csrf_token %}
+                                    <input type="submit" value="LOGOUT"  style="color:gray;" class="dropdown-item">
+                                  </form>
                                 </li>
+                                <li>        
+                                    <a href="#" style="color:gray;" class="dropdown-item"> MY ACCOUNT </a>        
+                                </li>
+                              {% else %}
                                 <li>
-                                    <form action="#" method = "#">
-                                    <input type="submit" value="logout"  style="color:gray;" class="dropdown-item">
-                                    </form>
+                                  <a href="{% url 'accounts:login' %}" style="color:gray;" class="dropdown-item">LOGIN</a>
                                 </li>
-                                <li>
-                                    <form action="#" method = "#">
-                                    <input type="submit" value="signup"  style="color:gray;" class="dropdown-item">
-                                    </form>
+                                <li>   
+                                  <a href="#" style="color:gray;" class="dropdown-item">SIGNUP</a>
                                 </li>
-                                <li>
-                                    <form action="#" method = "#">
-                                    <input type="submit" value="profile"  style="color:gray;" class="dropdown-item">
-                                    </form>
-                                </li>
+                              {% endif %}
                             </ul>
                         </li>
                         <li class="nav-item dropdown" style='margin-top:0.2rem;'>
@@ -79,6 +77,11 @@
                                     </form>
                                 </li>
                             </ul>
+                            {% if request.user.is_authenticated%}
+                                <li class="nav-item" style='margin-top:0.2rem;'>
+                                    <a class="nav-link" href='{% url 'recommends:create' %}' style="color:white">CREATE</a>
+                                </li>
+                            {% endif %}
                         </li>
                     </ul>
                     

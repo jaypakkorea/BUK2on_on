@@ -1,5 +1,11 @@
-from django.shortcuts import render
-from .models import Restaurant
+from django.shortcuts import render, redirect
+from .models import *
+from .forms import *
+from django.forms import modelformset_factory
+from django.http import HttpResponseRedirect
+from django.views.decorators.http import require_http_methods, require_POST, require_safe
+from django.contrib.auth.decorators import login_required
+
 
 
 # Create your views here.
@@ -20,5 +26,38 @@ def detail(request, restaurant_pk ):
     return render(request, 'recommends/detail.html', context)
 
 
-def whoweare(request):
-    return render(request, "recommends/whoweare.html")
+@login_required
+@require_http_methods(['GET', 'POST'])
+def create(request):
+    ImageFormSet = modelformset_factory(Images,form=ImageForm, extra=4)
+    
+    if request.method == "POST" :
+        restaurantform = RestaurantForm(request.POST)
+        formset = ImageFormSet(request.POST, request.FILES, queryset=Images.objects.none())
+
+        if restaurantform.is_valid() and formset.is_valid():
+
+            restaurant_form = restaurantform.save(commit=False)
+            restaurant_form.user = request.user
+            restaurant_form.save()
+            for form in formset.cleaned_data:
+                if form:
+                    image = form['image']
+                    print(form)
+                    print(form['image'])
+                    photo = Images(restaurant=restaurant_form, image=image)
+                    photo.save()
+                    print('yes')
+            return redirect('recommends:detail', restaurant_form.pk )
+        else:
+            print(Recommendform.errors, formset.errors)
+
+    else:
+        Recommendform = RestaurantForm()
+        formset = ImageFormSet(queryset=Images.objects.none())
+        context = {
+            'Recommendform' : Recommendform,
+            'formset' : formset,
+        }
+    return render(request, 'recommends/create.html', context)
+

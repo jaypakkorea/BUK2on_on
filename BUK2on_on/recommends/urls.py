@@ -5,5 +5,5 @@ app_name = 'recommends'
 urlpatterns = [
     path('', views.index , name='index'),
     path('<int:restaurant_pk>/', views.detail , name='detail'),
-    path('whoweare/', views.whoweare , name='whoweare'),
+    path('create/', views.create, name = 'create'),
 ] 
