@@ -28,3 +28,7 @@ def login(request):
 def logout(request):
     auth_logout(request)
     return redirect('recommends:index')
+
+
+def profile(request, username):
+    return render(request, 'accounts/profile.html')

@@ -42,7 +42,7 @@
 
 .green_box{
   left : 0;
-  background-color: rgb(42, 71, 5);
+  background-color: greenyellow;
   border:1px solid none;
   width:720px;
   height:100%;
@@ -55,7 +55,7 @@
   font-size: 3rem; 
   font-family: Georgia, 'Times New Roman', Times, serif;
   z-index: 4;
-  color : white;
+  color : black;
   font-style: italic;
   text-align: right;
   margin-right: 50px;
@@ -95,6 +95,10 @@ footer {
 
 }
 
+.section_title{
+  color: greenyellow;
+  margin-bottom: 5rem;
+}
 
 @keyframes slide{
   from{
