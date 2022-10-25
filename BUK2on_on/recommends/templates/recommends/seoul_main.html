@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<div style="margin:12rem;"></div>
+
+<div class="container">
+    <h1 class='section_title'>SEOUL</h1>
+    <div class="a_hover">
+        {% for recommend  in recommends %}
+            <a href="#" style='text-decoration:none; color:white;'>{{recommend.name}}
+            {% if recommend.stars == 3 %}
+                <span style='margin-left:1rem ;'>★★★</span>
+            {% elif recommend.stars == 2 %}
+                <span style='margin-left:1rem;'>★★</span>
+            {% elif recommend.stars == 2 %}
+                <span style='margin-left:1rem;'>★</span>
+            {% endif %} 
+
+            </a>
+
+            <div style = 'margin-top : 0.5rem;'>{{recommend.adress}}</div>
+            <hr>
+
+
+        
+        {% endfor %}
+    </div>
+    
+    <form id="post_form" action="{% url 'recommends:create' %}" method="POST"  enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        {{Recommendform.as_p}}
+        {{ formset.management_form }}
+
+        {% for form in formset %}
+            <br>{{ form }}
+        {% endfor %}
+
+        <div style="margin:8rem;"></div>
+
+        <input type="submit" value="SUBMIT" class="btn btn-link">
+    <hr>
+</div>
+  
+{% endblock content %}
+

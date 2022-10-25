@@ -8,13 +8,30 @@ from django.contrib.auth.decorators import login_required
 
 
 
-# Create your views here.
 def index(request):
     recommends = Restaurant.objects.all()
     context ={
         'recommends' : recommends,
     }
     return render(request, "recommends/index.html", context)
+
+
+def seoul_main(request):
+    recommends = Restaurant.objects.filter(pick = 1)
+    
+    context ={
+        'recommends' : recommends,
+    }
+    return render(request, "recommends/seoul_main.html", context)
+
+def busan_main(request):
+    recommends = Restaurant.objects.filter(pick = 2)
+    context ={
+        'recommends' : recommends,
+    }
+    return render(request, "recommends/busan_main.html", context)
+
+
 
 
 def detail(request, restaurant_pk ):
