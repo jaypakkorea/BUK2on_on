@@ -12,14 +12,14 @@
       {% if user.profile_pic %}
           <img src="{{user.profile_pic.url}}" alt="no image"  width="150" height="150" style="border-radius : 70%; overflow:hidden; margin-right:5rem;">
       {% else %}
-          <img src=" {% static 'default_avatar.jpg' %} " alt="no image"  width="150" height="150" style="border-radius : 70%; overflow:hidden; margin-right:5rem; ">
+          <img src=" {% static 'default_avatar2.jpg' %} " alt="no image"  width="150" height="150" style="border-radius : 70%; overflow:hidden; margin-right:5rem; ">
       {% endif %}
     </div>
 
 
     <section style='display: flex; flex-direction:column; justify-content:left; align-itmes:left; margin-top:1.3rem;' >
       <div class= "d-flex flex-row justify-content-left  align-itmes-left row-6 " style='margin-bottom:2rem;'>
-        <h3 style='margin-right:2rem; color: purple;'>
+        <h3 style='margin-right:2rem;'>
             {{user.username|upper}}
         </h3>
         <form action="#" method="POST"  style='top:2px;'>
