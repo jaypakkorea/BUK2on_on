@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
-from .forms import CustomUserCreationForm
+from .models import User
+from .forms import CustomUserCreationForm, CustomUserChangeForm
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth import login as auth_login
@@ -32,3 +33,22 @@ def logout(request):
 
 def profile(request, username):
     return render(request, 'accounts/profile.html')
+
+
+def signup(request):
+    if request.method == 'POST':
+        signup_form = CustomUserCreationForm(request.POST, request.FILES)
+        if signup_form.is_valid():
+            user = signup_form.save()
+            # Profile.objects.create(user=user) #프로필 생성
+            auth_login(request, user)
+            return redirect('recommends:index')
+    
+    else:
+        signup_form = CustomUserCreationForm()
+
+    context = {
+        'signup_form' : signup_form,
+    }
+    
+    return render(request,'accounts/signup.html', context)
