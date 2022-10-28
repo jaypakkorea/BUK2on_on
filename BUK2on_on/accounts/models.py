@@ -12,13 +12,7 @@ class User(AbstractUser):
     max_length=255,
     unique=True,
     )
-
-    date_of_birth = models.DateField(blank = True,null=True )
-    instagram_url = models.CharField(max_length=255,null=True, blank=True,)
-    twitter_url = models.CharField(max_length=255,null=True, blank=True,)
-    facebook_url = models.CharField(max_length=255,null=True, blank=True,)
-    youtube_url = models.CharField(max_length=255,null=True, blank=True,)
-
+    
     profile_pic = ProcessedImageField(
     		blank = True,
         	upload_to = 'profile/images',
@@ -26,5 +20,13 @@ class User(AbstractUser):
         	format = 'JPEG',
         	options = {'quality':90},
     		)
+
+
+    date_of_birth = models.DateField(blank = True,null=True )
+    instagram_url = models.CharField(max_length=255,null=True, blank=True,)
+    twitter_url = models.CharField(max_length=255,null=True, blank=True,)
+    facebook_url = models.CharField(max_length=255,null=True, blank=True,)
+    youtube_url = models.CharField(max_length=255,null=True, blank=True,)
+
 
     

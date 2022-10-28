@@ -12,6 +12,8 @@
 
 
 
+
+
 ### main color
 
 ![main_color](assets/main_color.jpg)
@@ -33,3 +35,18 @@ https://yssa.tistory.com/entry/Python-%ED%8F%B4%EB%A6%AC%EC%97%84Folium-%EB%9D%B
 카카오 지도 API
 
 https://developers.kakao.com/
+
+
+
+
+
+profile_ 사진 넣기
+
+https://tothefullest08.github.io/django/2019/06/20/Django25_relations4_OneToOne_Profile/
+
+
+
+하늘쌤
+
+http://www.skyggle.com/discussion/5
+

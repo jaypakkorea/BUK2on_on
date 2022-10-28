@@ -42,7 +42,7 @@ def signup(request):
             user = signup_form.save()
             # Profile.objects.create(user=user) #프로필 생성
             auth_login(request, user)
-            return redirect('recommends:index')
+            return redirect('accounts:profile' , user.username )
     
     else:
         signup_form = CustomUserCreationForm()
