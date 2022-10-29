@@ -8,7 +8,7 @@
     <h1 class='section_title'>SEOUL</h1>
     <div class="a_hover">
         {% for recommend  in recommends %}
-            <a href="{% url 'recommends:detail' recommend.pk %}" style='text-decoration:none; color:white;'>{{recommend.name}}
+            <a href="{% url 'buk2on_on:detail' recommend.pk %}" style='text-decoration:none; color:white;'>{{recommend.name}}
             {% if recommend.stars == 3 %}
                 <span style='margin-left:1rem ;'>★★★</span>
             {% elif recommend.stars == 2 %}
@@ -27,7 +27,7 @@
         {% endfor %}
     </div>
     
-    <form id="post_form" action="{% url 'recommends:create' %}" method="POST"  enctype="multipart/form-data">
+    <form id="post_form" action="{% url 'buk2on_on:create' %}" method="POST"  enctype="multipart/form-data">
         {% csrf_token %}
         
         {{Recommendform.as_p}}

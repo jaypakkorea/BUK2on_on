@@ -20,7 +20,7 @@
     <div class ="main_nav">
         <nav class="navbar navbar-dark navbar-expand-lg" style="background-color: none; position:fixed;width: 100%; top: 0%;">
             <div class="container-fluid">
-                <a class="navbar-brand" href="{% url 'recommends:index' %}" style="color:white ; font-family:impact ;-webkit-text-stroke-width: 0.01rem;-webkit-text-stroke-color:black;"> BUK2 on & on </a>
+                <a class="navbar-brand" href="{% url 'buk2on_on:index' %}" style="color:white ; font-family:impact ;-webkit-text-stroke-width: 0.01rem;-webkit-text-stroke-color:black;"> BUK2 on & on </a>
             
                 <button class="navbar-toggler" style='opacity:0.5;' type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" >
                     <span class="navbar-toggler-icon"></span>
@@ -37,23 +37,23 @@
                             </a>
                             <ul class="dropdown-menu">
                                 {% if request.user.is_authenticated%}
-                                <li>
-                                  <form action="{% url 'accounts:logout' %}" method = "POST">
-                                    {% csrf_token %}
-                                    <input type="submit" value="LOGOUT"  style="color:gray;" class="dropdown-item">
-                                  </form>
-                                </li>
-                                <li>        
-                                    <a href="{% url 'accounts:profile' user.username %}" style="color:gray;" class="dropdown-item"> MY ACCOUNT </a>        
-                                </li>
-                              {% else %}
-                                <li>
-                                  <a href="{% url 'accounts:login' %}" style="color:gray;" class="dropdown-item">LOGIN</a>
-                                </li>
-                                <li>   
-                                  <a href="{% url 'accounts:signup' %}" style="color:gray;" class="dropdown-item">SIGNUP</a>
-                                </li>
-                              {% endif %}
+                                  <li>
+                                    <form action="{% url 'accounts:logout' %}" method = "POST">
+                                      {% csrf_token %}
+                                      <input type="submit" value="LOGOUT"  style="color:gray;" class="dropdown-item">
+                                    </form>
+                                  </li>
+                                  <li>        
+                                      <a href="{% url 'accounts:profile' user.username %}" style="color:gray;" class="dropdown-item"> MY ACCOUNT </a>        
+                                  </li>
+                                {% else %}
+                                  <li>
+                                    <a href="{% url 'accounts:login' %}" style="color:gray;" class="dropdown-item">LOGIN</a>
+                                  </li>
+                                  <li>   
+                                    <a href="{% url 'accounts:signup' %}" style="color:gray;" class="dropdown-item">CREATE ACCOUNT</a>
+                                  </li>
+                                {% endif %}
                             </ul>
                         </li>
                         <li class="nav-item dropdown" style='margin-top:0.2rem;'>
@@ -62,12 +62,12 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <form action="{% url 'recommends:seoul_main' %}" method = "#">
+                                    <form action="{% url 'buk2on_on:seoul_main' %}" method = "#">
                                     <input type="submit" value="Seoul"  style="color:gray;" class="dropdown-item">
                                     </form>
                                 </li>
                                 <li>
-                                    <form action="{% url 'recommends:busan_main' %}" method = "#">
+                                    <form action="{% url 'buk2on_on:busan_main' %}" method = "#">
                                     <input type="submit" value="Busan"  style="color:gray;" class="dropdown-item">
                                     </form>
                                 </li>
@@ -79,7 +79,7 @@
                             </ul>
                             {% if request.user.is_authenticated%}
                                 <li class="nav-item" style='margin-top:0.2rem;'>
-                                    <a class="nav-link" href='{% url 'recommends:create' %}' style="color:white">CREATE</a>
+                                    <a class="nav-link" href='{% url 'buk2on_on:create' %}' style="color:white">CREATE</a>
                                 </li>
                             {% endif %}
                         </li>

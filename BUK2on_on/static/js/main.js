@@ -1,4 +1,4 @@
-let whoweare = document.querySelector("h3");
+let whoweare = document.querySelector(".whoweare");
 
 window.addEventListener('scroll', function() {
     let value = window.scrollY

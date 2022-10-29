@@ -83,10 +83,10 @@
 
 <hr>
 
-<a href="#" style="color:gray;" class="btn btn-outline-secondary">UPDATE ACCOUNT</a>
+<a href="{% url 'accounts:update' %}" style="color:gray;" class="btn btn-outline-secondary">UPDATE ACCOUNT</a>
 
 <hr>
-<a href="{% url 'recommends:index' %}"><input type="submit" value="BACK"  ></a>
+<a href="{% url 'buk2on_on:index' %}"><input type="submit" value="BACK"  ></a>
 </div>
 
 {% endblock content %}

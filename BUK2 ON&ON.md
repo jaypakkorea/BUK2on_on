@@ -50,3 +50,8 @@ https://tothefullest08.github.io/django/2019/06/20/Django25_relations4_OneToOne_
 
 http://www.skyggle.com/discussion/5
 
+
+
+사용자 인증
+
+https://bangseogs.tistory.com/103
