@@ -55,3 +55,9 @@ http://www.skyggle.com/discussion/5
 사용자 인증
 
 https://bangseogs.tistory.com/103
+
+
+
+이메일 인증
+
+https://swarf00.github.io/2018/12/14/logout.html
