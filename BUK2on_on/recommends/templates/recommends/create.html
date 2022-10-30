@@ -6,16 +6,25 @@
 <div style="margin:12rem;"></div>
 
 <div class="container">
-    <h1 class='section_title'>NEW</h1>
+    <h1 class='section_title'>Recommend</h1>
     
     <form id="post_form" action="{% url 'buk2on_on:create' %}" method="POST"  enctype="multipart/form-data">
         {% csrf_token %}
         
-        {{Recommendform.as_p}}
+        {% for field in Recommendform %}
+            <div style="margin-bottom: 1.5rem; margin-left: 1rem;">
+            {{ field.label_tag }} 
+            <div style="margin-top: 0.2rem;">
+            {{ field }} <span>{{ field.errors }} </span></div>
+            </div>
+        {% endfor %}
+
+
         {{ formset.management_form }}
 
         {% for form in formset %}
-            <br>{{ form }}
+            <div style=" margin-left: 1rem;">
+            <br>{{ form }} {{ form.errors }} </div>
         {% endfor %}
 
         <div style="margin:8rem;"></div>

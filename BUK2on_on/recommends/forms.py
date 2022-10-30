@@ -1,38 +1,35 @@
 from django import forms
 from .models import *
 from django.utils.translation import gettext_lazy as _
+from .custom_widgets import PreviewImageFileWidget
 
 
 class RestaurantForm(forms.ModelForm):
 
     adress = forms.CharField(
-        label='adress',
+        label='Adress',
         widget=forms.TextInput(
             attrs={
-                'class': 'adress',
                 'placeholder': 'adress',
                 'maxlength': 1000,
-                'rows': 10,
-                'cols': 50,
+                'size': 40,
                 }
             )
         )
 
     name = forms.CharField(
-    label='name',
+    label='Name',
     widget=forms.TextInput(
         attrs={
-            'class': 'name',
             'placeholder': 'name',
             'maxlength': 200,
-            'rows': 10,
-            'cols': 50,
+            'size': 40,
             }
         )
     )
 
     stars = forms.IntegerField(
-    label='stars',
+    label='Stars',
     widget=forms.NumberInput(
         attrs={
             'min': 0,
@@ -42,27 +39,24 @@ class RestaurantForm(forms.ModelForm):
     )
 
     bestMenu = forms.CharField(
-    label='bestMenu',
+    label='Best Menu',
     widget=forms.TextInput(
         attrs={
-            'class': 'bestMenu',
-            'placeholder': 'bestMenu',
+            'placeholder': 'Best Menu',
             'maxlength': 200,
-            'rows': 10,
-            'cols': 50,
+            'size': 40,
             }
         )
     )
 
     reason = forms.CharField(
-    label='reason',
+    label='Comment',
     widget=forms.TextInput(
         attrs={
-            'class': 'reason',
             'placeholder': 'reason',
             'maxlength': 1000,
-            'rows': 10,
-            'cols': 50,
+            'size': 40,
+
             }
         )
     )
@@ -74,9 +68,20 @@ class RestaurantForm(forms.ModelForm):
  
  
 class ImageForm(forms.ModelForm):
+
+    image = forms.ImageField(
+    required = True,
+    label='Image',
+    widget=PreviewImageFileWidget(),
+    error_messages={
+        'required': '사진을 입력하세요.',
+    })
+
+    
     class Meta:
         model = Images
         fields = ('image', )
         labels = {
             'image': _('Image'),
         }
+        

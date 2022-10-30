@@ -17,15 +17,19 @@ def index(request):
 
 
 def seoul_main(request):
-    recommends = Restaurant.objects.filter(pick = 1)
+    recommends = Restaurant.objects.filter(region = 1)
+    print(recommends)
+
     
     context ={
         'recommends' : recommends,
     }
     return render(request, "recommends/seoul_main.html", context)
 
+
+
 def busan_main(request):
-    recommends = Restaurant.objects.filter(pick = 2)
+    recommends = Restaurant.objects.filter(region = 2)
     context ={
         'recommends' : recommends,
     }
@@ -65,7 +69,7 @@ def create(request):
                     photo = Images(restaurant=restaurant_form, image=image)
                     photo.save()
                     print('yes')
-            return redirect('recommends:detail', restaurant_form.pk )
+            return redirect('buk2on_on:detail', restaurant_form.pk )
         else:
             print(Recommendform.errors, formset.errors)
 

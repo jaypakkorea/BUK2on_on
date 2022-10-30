@@ -3,7 +3,7 @@ from django.template.defaultfilters import slugify
 
 class Restaurant(models.Model):
     province = (('1','Seoul'),('2','Busan'),('3','etc.'))
-    pick = models.CharField(max_length=20, choices=province)
+    region = models.CharField(max_length=20, choices=province)
     adress = models.CharField(max_length=1000)
     name = models.CharField(max_length = 200)
     stars = models.IntegerField()
@@ -22,7 +22,7 @@ def get_image_filename(instance, filename):
 
 class Images(models.Model):
     restaurant = models.ForeignKey(Restaurant, default=None,on_delete=models.CASCADE, related_name="image")
-    image = models.ImageField(upload_to=get_image_filename)
+    image = models.ImageField(upload_to=get_image_filename, null=False, blank=False)
 
     class Meta:
         verbose_name = 'Image'

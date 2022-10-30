@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 
 {% block content %}
@@ -6,41 +7,31 @@
 
 <div class="container">
     <h1 class='section_title'>SEOUL</h1>
-    <div class="a_hover">
-        {% for recommend  in recommends %}
-            <a href="{% url 'buk2on_on:detail' recommend.pk %}" style='text-decoration:none; color:white;'>{{recommend.name}}
-            {% if recommend.stars == 3 %}
-                <span style='margin-left:1rem ;'>★★★</span>
-            {% elif recommend.stars == 2 %}
-                <span style='margin-left:1rem;'>★★</span>
-            {% elif recommend.stars == 2 %}
-                <span style='margin-left:1rem;'>★</span>
-            {% endif %} 
-            
-            </a>
-
-            <div style = 'margin-top : 0.5rem;'>{{recommend.adress}}</div>
-            <hr>
-
-
+    <div class="a_hover" style ="display:flex; flex-direction:row; flex-wrap:wrap; justify-content:flex-start; align-content:space-around; ">
         
+        {% for recommend  in recommends %}
+           {% for i in recommend.image.all %}
+            <div style="width:33%; margin-bottom:28px;"> 
+                <a href="{% url 'buk2on_on:detail' recommend.pk %}" style='text-decoration:none; color:white;'>
+                    <img src="{{i.image.url}}"  alt="{% static 'main_color.jpg' %}" style="width: 293px; height:293px;" >
+                    <div></div>
+                    {{recommend.name}}
+                    {% if recommend.stars == 3 %}
+                        <span style='margin-left:1rem ;'>★★★</span>
+                    {% elif recommend.stars == 2 %}
+                        <span style='margin-left:1rem;'>★★</span>
+                    {% elif recommend.stars == 1 %}
+                        <span style='margin-left:1rem;'>★</span>
+                    {% endif %} 
+                    
+                </a>
+        
+            </div>
+            {% endfor %}
+
         {% endfor %}
     </div>
     
-    <form id="post_form" action="{% url 'buk2on_on:create' %}" method="POST"  enctype="multipart/form-data">
-        {% csrf_token %}
-        
-        {{Recommendform.as_p}}
-        {{ formset.management_form }}
-
-        {% for form in formset %}
-            <br>{{ form }}
-        {% endfor %}
-
-        <div style="margin:8rem;"></div>
-
-        <input type="submit" value="SUBMIT" class="btn btn-link">
-    <hr>
 </div>
   
 {% endblock content %}
