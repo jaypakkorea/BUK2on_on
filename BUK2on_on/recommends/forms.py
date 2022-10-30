@@ -14,7 +14,7 @@ class RestaurantForm(forms.ModelForm):
                 'maxlength': 1000,
                 'size': 40,
                 }
-            )
+            ),
         )
 
     name = forms.CharField(
@@ -32,6 +32,7 @@ class RestaurantForm(forms.ModelForm):
     label='Stars',
     widget=forms.NumberInput(
         attrs={
+            'placeholder': '-',
             'min': 0,
             'max' : 3,
             }
@@ -51,19 +52,19 @@ class RestaurantForm(forms.ModelForm):
 
     reason = forms.CharField(
     label='Comment',
-    widget=forms.TextInput(
+    widget=forms.Textarea(
         attrs={
-            'placeholder': 'reason',
+            'placeholder': 'Reason',
             'maxlength': 1000,
-            'size': 40,
-
+            'rows' :4,
+            'cols' :42,
             }
         )
     )
 
     class Meta:
         model = Restaurant
-        fields = '__all__'
+        exclude = ['user']
 
  
  
@@ -72,7 +73,7 @@ class ImageForm(forms.ModelForm):
     image = forms.ImageField(
     required = True,
     label='Image',
-    widget=PreviewImageFileWidget(),
+    widget=forms.FileInput(),
     error_messages={
         'required': '사진을 입력하세요.',
     })

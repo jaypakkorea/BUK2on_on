@@ -18,11 +18,10 @@ def index(request):
 
 def seoul_main(request):
     recommends = Restaurant.objects.filter(region = 1)
-    print(recommends)
-
-    
+    images = Images.objects.all()
     context ={
         'recommends' : recommends,
+        'images' : images,
     }
     return render(request, "recommends/seoul_main.html", context)
 
@@ -54,24 +53,25 @@ def create(request):
     
     if request.method == "POST" :
         restaurantform = RestaurantForm(request.POST)
-        formset = ImageFormSet(request.POST, request.FILES, queryset=Images.objects.none())
-
+        formset = ImageFormSet(request.POST, request.FILES)
+        print(formset)
         if restaurantform.is_valid() and formset.is_valid():
-
             restaurant_form = restaurantform.save(commit=False)
             restaurant_form.user = request.user
             restaurant_form.save()
             for form in formset.cleaned_data:
                 if form:
                     image = form['image']
-                    print(form)
-                    print(form['image'])
                     photo = Images(restaurant=restaurant_form, image=image)
                     photo.save()
-                    print('yes')
-            return redirect('buk2on_on:detail', restaurant_form.pk )
-        else:
-            print(Recommendform.errors, formset.errors)
+                
+            if request.POST['region'] == '1' :
+                return redirect('buk2on_on:seoul_main' )
+            elif request.POST['region'] == '2' :
+                return redirect('buk2on_on:busan_main' )
+                
+        # else:
+        #     print(Recommendform.errors, formset.errors)
 
     else:
         Recommendform = RestaurantForm()
@@ -82,3 +82,48 @@ def create(request):
         }
     return render(request, 'recommends/create.html', context)
 
+
+@require_POST
+def delete(request, restaurant_pk):
+    restaurant = Restaurant.objects.get(pk=restaurant_pk)
+    restaurant_region = restaurant.region
+    restaurant.delete()
+    if restaurant_region == '1':
+        return redirect('buk2on_on:seoul_main' )
+    if restaurant_region == '2':
+            return redirect('buk2on_on:busan_main' )
+
+
+@login_required
+@require_http_methods(['GET', 'POST'])
+def update(request, restaurant_pk):
+    ImageFormSet = modelformset_factory(Images,form=ImageForm, extra=4)
+
+    restaurant = Restaurant.objects.get(pk=restaurant_pk)
+
+    if request.method == 'POST':
+        restaurant_form = RestaurantForm(request.POST, request.FILES, instance=restaurant)
+        formset = ImageFormSet(request.POST, request.FILES)
+        if restaurant_form.is_valid() and formset.is_valid() :
+            restaurant_form.save()
+            restaurant_form.save()
+            for form in formset.cleaned_data:
+                if form:
+                    image = form['image']
+                    photo = Images(restaurant=restaurant_form, image=image)
+                    photo.save()
+                
+            return redirect('buk2on_on:detail', restaurant.pk)
+                
+
+        else:
+            print(restaurant_form.errors, formset.errors)
+
+    else:
+        restaurant_form = RestaurantForm()
+        formset = ImageFormSet(queryset=Images.objects.none())
+    context = {
+            'restaurant_form' : restaurant_form,
+            'formset' : formset,
+        }
+    return render(request, 'recommends/update.html', context)

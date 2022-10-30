@@ -35,7 +35,12 @@ def logout(request):
 
 
 def profile(request, username):
-    return render(request, 'accounts/profile.html')
+    User = get_user_model()
+    person = User.objects.get(username=username)
+    context = {
+            'person' : person,
+        }
+    return render(request, 'accounts/profile.html',context)
 
 
 def signup(request):

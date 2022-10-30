@@ -4,8 +4,8 @@
 
 
 .a_hover a:hover {
-    background-color: greenyellow;
-    color: black;
+    /* background-color: greenyellow; */
+    color: greenyellow;
   }
   
 .background_main_image{

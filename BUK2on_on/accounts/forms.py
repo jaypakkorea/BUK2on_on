@@ -38,7 +38,7 @@ class CustomUserCreationForm(UserCreationForm):
     date_of_birth = forms.DateField(
     required = False,
     label='Date of Birth',
-    widget=forms.DateInput(
+    widget=forms.SelectDateWidget(
         attrs={
             'placeholder': 'yy-mm-dd',
             'type' : 'date' ,

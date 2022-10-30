@@ -72,13 +72,21 @@
 
 <h3 style="bottom:2rem; display:inline;"><b>{{user.username|upper}} 's </b></h3>
 <h2 style="bottom:2rem; display:inline; font-size:1.3rem;">recommends</h2>
-<div style=" border:1px solid none; height:5rem;" ></div>
+<div style=" border:1px solid none; height:2rem;" ></div>
 
 
 
-{% comment %} {% for comment  in person.comment_set.all  %}
-<div style="margin-bottom:1.3rem;">{{comment.content}} _ {{comment.created_at}}</div>
-{% endfor %} {% endcomment %}
+{% for recommend  in person.restaurant_set.all  %}
+  {% if recommend.stars == 3 %}
+    <div style="margin-bottom:1.3rem;">{{recommend.name}}  <span style='margin-left:1rem ;'>★★★</span></div>
+  {% elif recommend.stars == 2 %}
+    <div style="margin-bottom:1.3rem;">{{recommend.name}}  <span style='margin-left:1rem ;'>★★</span></div>
+  {% elif recommend.stars == 1 %}
+    <div style="margin-bottom:1.3rem;">{{recommend.name}}  <span style='margin-left:1rem ;'>★</span></div>
+  {% elif recommend.stars == 0 %}
+    <div style="margin-bottom:1.3rem;">{{recommend.name}}  <span style='margin-left:1rem ;'>none</span></div>
+  {% endif %} 
+{% endfor %}
 
 
 <hr>
