@@ -7,7 +7,7 @@
 
     <div style="margin:12rem;"></div>
     <h1 class="detail_title">{{recommend.name}}</h1>
-
+    <a href="{% url 'accounts:profile' recommend.user %}" style="color: purple; text-decoration:none;" > {{recommend.user|upper}}</a>
 
     <hr>
     <div style= "margin-bottom:2rem"></div>

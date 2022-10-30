@@ -7,7 +7,8 @@ from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth import get_user_model
-# Create your views here.
+from django.http import JsonResponse
+
 
 
 def login(request):
@@ -100,3 +101,23 @@ def change_password(request):
     }
     
     return render(request,'accounts/change_password.html', context)
+
+
+def follow(request, user_pk):
+    print('hello')
+    User = get_user_model()
+    person = User.objects.get(pk=user_pk)
+    if person != request.user:
+        if person.followers.filter(pk=request.user.pk).exists():
+            person.followers.remove(request.user)
+            is_followed = False
+        else:
+            person.followers.add(request.user)
+            is_followed = True
+        context = {
+            'is_followed' : is_followed,
+            'followers_count' : person.followers.count(),
+            'followings_count' : person.followings.count(),
+        }
+        return JsonResponse(context)
+    return redirect('accounts:profile', person.username)

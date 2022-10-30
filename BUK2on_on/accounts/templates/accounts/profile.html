@@ -9,8 +9,8 @@
 
   <div style='display: flex;'>
     <div style="justify-content: center; align-items: center; align-self: center; ">
-      {% if user.profile_pic %}
-          <img src="{{user.profile_pic.url}}" alt="no image"  width="150" height="150" style="border-radius : 70%; overflow:hidden; margin-right:5rem;">
+      {% if person.profile_pic %}
+          <img src="{{person.profile_pic.url}}" alt="no image"  width="150" height="150" style="border-radius : 70%; overflow:hidden; margin-right:5rem;">
       {% else %}
           <img src=" {% static 'default_avatar2.jpg' %} " alt="no image"  width="150" height="150" style="border-radius : 70%; overflow:hidden; margin-right:5rem; ">
       {% endif %}
@@ -20,15 +20,11 @@
     <section style='display: flex; flex-direction:column; justify-content:left; align-itmes:left; margin-top:1.3rem;' >
       <div class= "d-flex flex-row justify-content-left  align-itmes-left row-6 " style='margin-bottom:2rem;'>
         <h3 style='margin-right:2rem;'>
-            {{user.username|upper}}
+            {{person.username|upper}}
         </h3>
-        <form action="#" method="POST"  style='top:2px;'>
-          {% csrf_token %}
-          <input type="submit" value="UNFOLLOW" class="btn btn-light btn-sm" >
-        </form>
 
-        {% comment %} {% if request.user != person %}
-        <form action="{% url 'accounts:follow' person.pk %}" method="POST" style='display: inline; '>
+        {% if request.user != person %}
+        <form id="follow-form" data-user-id="{{person.pk}}" style='display: inline; '>
             {% csrf_token %}
             {% if request.user in person.followers.all %}
             <input type="submit" value="UNFOLLOW" class="btn btn-light btn-sm" >
@@ -36,17 +32,17 @@
             <input type="submit" value="FOLLOW" class="btn btn-outline-light btn-sm">
             {% endif %}
         </form>   
-        {% endif %} {% endcomment %}
+        {% endif %} 
       </div>
       <div class="d-flex flex-row row-6" style="font-size:0.8rem; justify-content:space-round; align-itmes:center;">
         <div class="d-flex row-4 row-md-4" >
-          FOLLOWING &nbsp&nbsp <span>123</span> &nbsp&nbsp&nbsp&nbsp
+          FOLLOWING &nbsp&nbsp <span id="followings-count">{{person.followings.all|length}}</span> &nbsp&nbsp&nbsp&nbsp
         </div>
         <div class="d-flex row-4 row-md-4">
-          FOLLOWER  &nbsp&nbsp <span>100</span>&nbsp&nbsp&nbsp&nbsp
+          FOLLOWER  &nbsp&nbsp <span id="followers-count">{{person.followers.all|length}}</span>&nbsp&nbsp&nbsp&nbsp
         </div>
         <div class="d-flex row-4 row-md-4">
-          COMMENTS &nbsp&nbsp <span>35</span>&nbsp&nbsp&nbsp&nbsp 
+          RECOMMENDS &nbsp&nbsp <span>{{person.restaurant_set.all|length}}</span>&nbsp&nbsp&nbsp&nbsp 
       </div>
     </div>
       
@@ -70,7 +66,7 @@
 <hr>
 <div style=" border:1px solid none; height:1.2rem;" ></div>
 
-<h3 style="bottom:2rem; display:inline;"><b>{{user.username|upper}} 's </b></h3>
+<h3 style="bottom:2rem; display:inline;"><b>{{person.username|upper}} 's </b></h3>
 <h2 style="bottom:2rem; display:inline; font-size:1.3rem;">recommends</h2>
 <div style=" border:1px solid none; height:2rem;" ></div>
 
@@ -98,3 +94,45 @@
 </div>
 
 {% endblock content %}
+
+
+{% block script %}
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+  <script>
+    const form = document.querySelector('#follow-form')
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
+
+    form.addEventListener('submit', function(event){
+      event.preventDefault()
+      const userId = event.target.dataset.userId
+
+      axios({
+        method :'post',
+        url : `/accounts/${userId}/follow/`,
+        headers : {'X-CSRFToken' : csrftoken,}
+      })
+      .then((response) => {
+        const isFollowed = response.data.is_followed
+        console.log(isFollowed)
+
+        const followBtn = document.querySelector('#follow-form > input[type=submit]')
+        if (isFollowed === true) {
+          followBtn.value = 'unfollow'
+        } else {
+          followBtn.value = 'follow'
+        }
+        const followersCountTag = document.querySelector('#followers-count')
+        const followingsCountTag = document.querySelector('#followings-count')
+        const followersCount = response.data.followers_count
+        const followingsCount = response.data.followings_count
+        followersCountTag.innerText = followersCount
+        followingsCountTag.innerText = followingsCount
+      })
+      .catch((error) => {
+        console.log(error.response)
+      })
+    })
+
+  </script>
+{% endblock script %}

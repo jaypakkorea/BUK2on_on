@@ -6,6 +6,7 @@ from imagekit.processors import ResizeToFill
 # Create your models here.
 
 class User(AbstractUser):
+    followings = models.ManyToManyField('self', symmetrical=False, related_name='followers')
     email = models.EmailField(
     blank = True,
     verbose_name='email',
