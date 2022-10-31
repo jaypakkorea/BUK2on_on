@@ -5,6 +5,8 @@ from django.forms import modelformset_factory
 from django.http import HttpResponseRedirect
 from django.views.decorators.http import require_http_methods, require_POST, require_safe
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
+
 
 
 
@@ -70,6 +72,8 @@ def create(request):
                 elif request.POST['region'] == '2' :
                     return redirect('buk2on_on:busan_main' )
             else: 
+                return HttpResponse(
+                "<script>alert('올바르지 않은 접근입니다.\\n\\ 사진을 등록하세요.')</script>")
                 return redirect('buk2on_on:create')
         else:
             print('에러다아아')

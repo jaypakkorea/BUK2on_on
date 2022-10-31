@@ -23,18 +23,20 @@
         {{ formset.management_form }}
 
         {% for form in formset %}
-            <div class="fieldWrapper">
+            {% comment %} <div class="fieldWrapper">
                 {{ form.subject.errors }}
                 <label for="{{ form.subject.id_for_label }}">Image:</label>
                 {{ form.error_messages  }}
-            </div>
+            </div> {% endcomment %}
             <div style="color:red; margin-left: 1rem;">{{ form }} </div> 
             <div>{{form.error_messages}}</div>  
         {% endfor %}
 
         <div style="margin:8rem;"></div>
-
+        {% if formset %}
         <input type="submit" value="SUBMIT" class="btn btn-link">
+
+        {% endif %}
     <hr>
 </div>
   
