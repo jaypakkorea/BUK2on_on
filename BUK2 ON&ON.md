@@ -64,6 +64,10 @@ https://swarf00.github.io/2018/12/14/logout.html
 
 
 
+modal
+
+https://cholol.tistory.com/552
+
 
 
 # ToDoList
