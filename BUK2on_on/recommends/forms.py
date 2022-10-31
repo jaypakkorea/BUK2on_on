@@ -73,7 +73,7 @@ class ImageForm(forms.ModelForm):
     image = forms.ImageField(
     required = True,
     label='Image',
-    widget=forms.FileInput(),
+    widget=forms.ClearableFileInput(attrs={'multiple': True}),
     error_messages={
         'required': '사진을 입력하세요.',
     })

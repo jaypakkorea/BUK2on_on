@@ -54,24 +54,26 @@ def create(request):
     if request.method == "POST" :
         restaurantform = RestaurantForm(request.POST)
         formset = ImageFormSet(request.POST, request.FILES)
-        print(formset)
-        if restaurantform.is_valid() and formset.is_valid():
-            restaurant_form = restaurantform.save(commit=False)
-            restaurant_form.user = request.user
-            restaurant_form.save()
-            for form in formset.cleaned_data:
-                if form:
-                    image = form['image']
-                    photo = Images(restaurant=restaurant_form, image=image)
-                    photo.save()
-                
-            if request.POST['region'] == '1' :
-                return redirect('buk2on_on:seoul_main' )
-            elif request.POST['region'] == '2' :
-                return redirect('buk2on_on:busan_main' )
-                
-        # else:
-        #     print(Recommendform.errors, formset.errors)
+        if restaurantform.is_valid():
+            if request.FILES:
+                restaurant_form = restaurantform.save(commit=False)
+                restaurant_form.user = request.user
+                restaurant_form.save()
+                for form in formset.cleaned_data:
+                    if form:
+                        image = form['image']
+                        photo = Images(restaurant=restaurant_form, image=image)
+                        photo.save()
+                    
+                if request.POST['region'] == '1' :
+                    return redirect('buk2on_on:seoul_main' )
+                elif request.POST['region'] == '2' :
+                    return redirect('buk2on_on:busan_main' )
+            else: 
+                return redirect('buk2on_on:create')
+        else:
+            print('에러다아아')
+            # print(Recommendform.errors, formset.errors)
 
     else:
         Recommendform = RestaurantForm()
@@ -105,7 +107,6 @@ def update(request, restaurant_pk):
         restaurant_form = RestaurantForm(request.POST, request.FILES, instance=restaurant)
         formset = ImageFormSet(request.POST, request.FILES)
         if restaurant_form.is_valid() and formset.is_valid() :
-            restaurant_form.save()
             restaurant_form.save()
             for form in formset.cleaned_data:
                 if form:

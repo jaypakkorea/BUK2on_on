@@ -12,7 +12,7 @@
             {% for recommend  in recommends %}
             
             {% for i in recommend.image.all %}
-                <div style="width:30%; flex-grow:1; margin-bottom:28px;"> 
+                <div style="flex-grow:1; margin-bottom:28px;"> 
                     <a href="{% url 'buk2on_on:detail' recommend.pk %}" style='text-decoration:none; color:white;'>
                         <img src="{{i.image.url}}"  alt="{% static 'main_color.jpg' %}" style="width: 293px; height:293px;" >
                         <div></div>
