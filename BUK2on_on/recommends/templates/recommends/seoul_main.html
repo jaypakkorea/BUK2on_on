@@ -8,11 +8,11 @@
 <div class="container">
     <h1 class='section_title'>SEOUL</h1>
     <div style ="display:flex; flex-direction:column-reverse; flex-wrap:no-wrap;">
-        <div class="a_hover" style ="display:flex; flex:1 1 auto; flex-direction:row; flex-wrap:wrap; justify-content:flex-start; align-itmes:stretch; ">    
+        <div class="a_hover" style ="display:flex; gap: 20px 2%; flex:1 1 auto; flex-direction:row; flex-wrap:wrap; justify-content:flex-start; align-itmes:stretch; ">    
             {% for recommend  in recommends %}
-
+            
             {% for i in recommend.image.all %}
-                <div style="width:33%; margin-bottom:28px;"> 
+                <div style="width:30%; flex-grow:1; margin-bottom:28px;"> 
                     <a href="{% url 'buk2on_on:detail' recommend.pk %}" style='text-decoration:none; color:white;'>
                         <img src="{{i.image.url}}"  alt="{% static 'main_color.jpg' %}" style="width: 293px; height:293px;" >
                         <div></div>
