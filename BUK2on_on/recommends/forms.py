@@ -62,6 +62,15 @@ class RestaurantForm(forms.ModelForm):
         )
     )
 
+    mainImage = forms.ImageField(
+    required = True,
+    label='Image',
+    widget=forms.ClearableFileInput(
+        ),
+    error_messages={
+        'required': '사진을 입력하세요.',
+    })
+
     class Meta:
         model = Restaurant
         exclude = ['user']

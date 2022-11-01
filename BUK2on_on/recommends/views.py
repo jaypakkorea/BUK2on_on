@@ -54,30 +54,22 @@ def create(request):
     ImageFormSet = modelformset_factory(Images,form=ImageForm, extra=4)
     
     if request.method == "POST" :
-        restaurantform = RestaurantForm(request.POST)
+        restaurantform = RestaurantForm(request.POST, request.FILES)
         formset = ImageFormSet(request.POST, request.FILES)
-        if restaurantform.is_valid():
-            if request.FILES:
-                restaurant_form = restaurantform.save(commit=False)
-                restaurant_form.user = request.user
-                restaurant_form.save()
-                for form in formset.cleaned_data:
-                    if form:
-                        image = form['image']
-                        photo = Images(restaurant=restaurant_form, image=image)
-                        photo.save()
-                    
-                if request.POST['region'] == '1' :
-                    return redirect('buk2on_on:seoul_main' )
-                elif request.POST['region'] == '2' :
-                    return redirect('buk2on_on:busan_main' )
-            else: 
-                return HttpResponse(
-                "<script>alert('올바르지 않은 접근입니다.\\n\\ 사진을 등록하세요.')</script>")
-                return redirect('buk2on_on:create')
-        else:
-            print('에러다아아')
-            # print(Recommendform.errors, formset.errors)
+        if restaurantform.is_valid() and formset.is_valid():
+            restaurant_form = restaurantform.save(commit=False)
+            restaurant_form.user = request.user
+            restaurant_form.save()
+            for form in formset.cleaned_data:
+                if form:
+                    image = form['image']
+                    photo = Images(restaurant=restaurant_form, image=image)
+                    photo.save()
+
+            if request.POST['region'] == '1' :
+                return redirect('buk2on_on:seoul_main' )
+            elif request.POST['region'] == '2' :
+                return redirect('buk2on_on:busan_main' )
 
     else:
         Recommendform = RestaurantForm()
