@@ -6,6 +6,8 @@
 <div style="margin:12rem;"></div>
 
 <div class="container">
+
+
     <h1 class='section_title'>SEOUL</h1>
     <div style ="display:flex; flex-direction:column-reverse; flex-wrap:no-wrap;">
         <div class="a_hover" style ="display:flex; gap: 20px 2%; flex:1 1 auto; flex-direction:row; flex-wrap:wrap; justify-content:flex-start; align-itmes:stretch; ">    
@@ -13,8 +15,27 @@
             
             {% for i in recommend.image.all %}
                 <div style="flex-grow:1; margin-bottom:28px;"> 
-                    <a href="{% url 'buk2on_on:detail' recommend.pk %}" style='text-decoration:none; color:white;'>
-                        <img src="{{i.image.url}}"  alt="{% static 'main_color.jpg' %}" style="width: 293px; height:293px;" >
+                    {% comment %} <a href="{% url 'buk2on_on:detail' recommend.pk %}" style='text-decoration:none; color:white;'> {% endcomment %}
+                    {% comment %} <a href="#" style='text-decoration:none; color:white;'> {% endcomment %}
+                    <div id="modal_detail_feed" class="modal_overlay">
+                        <div class="modal_window">
+                            <div class="modal_title">
+                                <div class="modal_title_side"></div>
+                                <div> {{recommend.name}} </div>
+                                <div class="modal_title_side">
+                                    <span id="close_modal" class="material-icons-outlined">
+                                        <div > 
+                                            <i class="fa-solid fa-x" style="color:yellowgreen;"></i>
+                                        </div>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="modal_image">
+                                <img src="{{i.image.url}}"  alt="{% static 'main_color.jpg' %}" style=" position: relative ;width: 100%; height:100%;" >
+                            </div>
+                        </div>
+                    </div>
+                    <img id="detail_feed"  src="{{i.image.url}}"  alt="{% static 'main_color.jpg' %}" style= "width: 293px; height:293px;" >
                         <div></div>
                         {{recommend.name}}
                         {% if recommend.stars == 3 %}
