@@ -7,14 +7,18 @@
 
 <div class="container">
 
+    <div >
+        <h1 class='section_title' >
+            SEOUL 
+        </h1>
+        <a href="{% url 'buk2on_on:create' %}" class="btn_submit" style="background: none; border:none;  displax:flex; "><i class="fa-solid fa-plus" style="color:yellowgreen;"></i></a>
+    </div>
 
-    <h1 class='section_title'>SEOUL</h1>
+
     <div style ="display:flex; flex-direction:column-reverse; flex-wrap:no-wrap;">
         <div class="a_hover" style ="display:flex; gap: 20px 2%; flex:1 1 auto; flex-direction:row; flex-wrap:wrap; justify-content:flex-start; align-itmes:stretch; ">    
             {% for recommend  in recommends %}
             <div style="flex-grow:1; margin-bottom:28px;"> 
-                {% comment %} <a href="{% url 'buk2on_on:detail' recommend.pk %}" style='text-decoration:none; color:white;'> {% endcomment %}
-                {% comment %} <a href="#" style='text-decoration:none; color:white;'> {% endcomment %}
                 <div id="modal_detail_feed" class="modal_overlay">
                     <div class="modal_window">
                         <div class="modal_title">
@@ -28,25 +32,49 @@
                                 </span>
                             </div>
                         </div>
-                        <div class="modal_image">
-                            <img src="{{recommend.mainImage.url}}"  alt="{% static 'main_color.jpg' %}" style=" position: relative ;width: 100%; height:100%;" >
+                        <div class="modal_image" style="display: flex; flex-direction:row" >
+                            <div>
+                                <div style="overflow:hidden; margin:0 auto; background-position: center; background-size:cover; width : 350px;">
+                                    <img src="{{recommend.mainImage.url}}"  alt="{% static 'main_color.jpg' %}" style="position: absolute; left:10px; width:350px; height: 520px" >
+                                </div>
+                            </div>
+                            <div style="display: flex; flex-direction:column;  align-items: flex-start; text-align : left; margin-left:10px; font-size:0.8rem;">
+                                <p>{{recommend.name}}</p> <span>{{recommend.user}}</span>
+                                {% if recommend.stars == 3 %}
+                                    <p>★★★</p>
+                                {% elif recommend.stars == 2 %}
+                                    <p>★★</p>
+                                {% elif recommend.stars == 1 %}
+                                    <p>★</p>
+                                {% elif recommend.stars == 0 %}
+                                    <p>none</p>
+                                {% endif %} 
+                                <p>{{recommend.adress}}</p>
+                                <p>{{recommend.bestMenu}}</p>
+                                <p>{{recommend.reason}}</p>
+                            </div>
+                            
+
                         </div>
                     </div>
                 </div>
-                <img id="detail_feed"  src="{{recommend.mainImage.url}}"  alt="{% static 'main_color.jpg' %}" style= "width: 293px; height:293px;" >
-                    <div></div>
-                    {{recommend.name}}
-                    {% if recommend.stars == 3 %}
-                        <span style='margin-left:1rem ;'>★★★</span>
-                    {% elif recommend.stars == 2 %}
-                        <span style='margin-left:1rem;'>★★</span>
-                    {% elif recommend.stars == 1 %}
-                        <span style='margin-left:1rem;'>★</span>
-                    {% elif recommend.stars == 0 %}
-                        <span style='margin-left:1rem;'>none</span>
-                    {% endif %} 
-                    
-                </a>
+                <div style= "width: 320px; height520px;">
+                    <div   style="width: 320px; height : 480px; overflow:hidden; margin:0 auto; background-position: center; background-size:cover;">
+                        <img id="detail_feed"  src="{{recommend.mainImage.url}}"  alt="{% static 'main_color.jpg' %}" style= "left:-50%; height:480px; width: 320px;" >
+                    </div>
+                        <div></div>
+                        {{recommend.name}}
+                        {% if recommend.stars == 3 %}
+                            <span style='margin-left:1rem ;'>★★★</span>
+                        {% elif recommend.stars == 2 %}
+                            <span style='margin-left:1rem;'>★★</span>
+                        {% elif recommend.stars == 1 %}
+                            <span style='margin-left:1rem;'>★</span>
+                        {% elif recommend.stars == 0 %}
+                            <span style='margin-left:1rem;'>none</span>
+                        {% endif %} 
+                    </a>
+                </div>
         
             </div>
             {% endfor %}

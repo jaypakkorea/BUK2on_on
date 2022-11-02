@@ -15,9 +15,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
   
 </head>
-<body style="background-color: black ; color:white; box-sizing: border-box;">
+<body style="background-color: black ; color:white; box-sizing: border-box; ">
 
-    <div class ="main_nav">
+    <div class ="main_nav" >
         <nav class="navbar navbar-dark navbar-expand-lg" style="background-color: none; position:fixed;width: 100%; top: 0%;">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{% url 'buk2on_on:index' %}" style="color:white ; font-family:impact ;-webkit-text-stroke-width: 0.01rem;-webkit-text-stroke-color:black;"> BUK2 on & on </a>
@@ -79,7 +79,9 @@
                             </ul>
                             {% if request.user.is_authenticated%}
                                 <li class="nav-item" style='margin-top:0.2rem;'>
-                                    <a class="nav-link" href='{% url 'buk2on_on:create' %}' style="color:white">CREATE</a>
+                                    {% comment %} <a href="{% url 'buk2on_on:create' %}" class="btn_submit" style="background: none; border:none; margin-right:2rem; margin-left:1rem; "><i class="fa-solid fa-plus" style="color:green;"></i></a> {% endcomment %}
+
+                                    {% comment %} <a class="nav-link" href='{% url 'buk2on_on:create' %}' style="color:white">CREATE</a> {% endcomment %}
                                 </li>
                             {% endif %}
                         </li>

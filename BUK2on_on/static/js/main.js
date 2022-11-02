@@ -14,8 +14,8 @@ window.addEventListener('scroll', function() {
 
 
 
-const modal = document.querySelector("#modal_detail_feed");
-const buttonAddFeed = document.querySelector("#detail_feed");
+const modal = document.getElementById("modal_detail_feed");
+const buttonAddFeed = document.getElementById("detail_feed");
 buttonAddFeed.addEventListener("click", e => {
     modal.style.top = window.pageYOffset + 'px';
     modal.style.display = "flex";
