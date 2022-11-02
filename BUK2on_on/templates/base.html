@@ -37,15 +37,15 @@
                             </a>
                             <ul class="dropdown-menu">
                                 {% if request.user.is_authenticated%}
-                                  <li>
+                                  {% comment %} <li>
                                     <form action="{% url 'accounts:logout' %}" method = "POST">
                                       {% csrf_token %}
                                       <input type="submit" value="LOGOUT"  style="color:gray;" class="dropdown-item">
                                     </form>
-                                  </li>
-                                  <li>        
+                                  </li> {% endcomment %}
+                                  {% comment %} <li>        
                                       <a href="{% url 'accounts:profile' user.username %}" style="color:gray;" class="dropdown-item"> MY ACCOUNT </a>        
-                                  </li>
+                                  </li> {% endcomment %}
                                 {% else %}
                                   <li>
                                     <a href="{% url 'accounts:login' %}" style="color:gray;" class="dropdown-item">LOGIN</a>
@@ -86,14 +86,30 @@
                             {% endif %}
                         </li>
                     </ul>
-                    
 
+                    {% if request.user.is_authenticated%}
+
+                        <div style="justify-content: center; align-items: center; align-self: center; ">
+                            {% if user.profile_pic %}
+                                <a href="{% url 'accounts:profile' user.username %}">
+                                    <img src="{{user.profile_pic.url}}" alt="no image"  width="30" height="30" style="border-radius : 70%; overflow:hidden; margin-right:1rem;">
+                                </a>
+                            {% else %}
+                                <a href="{% url 'accounts:profile' user.username %}">
+                                    <img src=" {% static 'default_avatar2.jpg' %} " alt="no image"  width="30" height="30" style="border-radius : 70%; overflow:hidden; margin-right:1rem; ">
+                                </a>
+                            {% endif %}
+                        </div>
+
+                    {% endif %}
+                    
             
                 
                 <form class="d-flex" role="search"  style='opacity:40%; margin-top:0.2rem;'>
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" >
                     <button  class="btn btn-outline-light"  type="submit">Search</button>
                 </form>
+
             </div>
             </div>
         </nav>
