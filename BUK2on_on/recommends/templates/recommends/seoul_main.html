@@ -24,7 +24,7 @@
                     <div class="modal_window">
                         <div class="modal_title">
                             <div class="modal_title_side"></div>
-                            <div> {{recommend.name}} </div>
+                            <h3 style="font-family: Gowun Batang; font-weight:bold;"> {{recommend.name}} </h3>
                             <div class="modal_title_side">
                                 <span id="close_modal" class="material-icons-outlined">
                                     <div > 
@@ -36,10 +36,10 @@
                         <div class="modal_image" style="display: flex; flex-direction:row" >
                             <div>
                                 <div style="overflow:hidden; margin:0 auto; background-position: center; background-size:cover; width : 350px;">
-                                    <img src="{{recommend.mainImage.url}}"  alt="{% static 'main_color.jpg' %}" style="position: absolute; left:10px; width:350px; height: 520px" >
+                                    <img src="{{recommend.mainImage.url}}"  alt="{% static 'main_color.jpg' %}" style="position: absolute; left:10px; width:350px; height: 520px " >
                                 </div>
                             </div>
-                            <div style="display: flex; flex-direction:column;  align-items: flex-start; text-align : left; margin-left:10px; font-size:0.8rem;">
+                            <div style="display: flex; flex-direction:column;  align-items: flex-start; text-align : left; margin-left:20px; margin-right:20px;">
                                 <div style="margin:1rem;"></div>
                                 {% if user.profile_pic %}
                                     <a href="{% url 'accounts:profile' recommend.user %}">
@@ -48,13 +48,21 @@
                                     </a>
                                 {% else %}
                                     <a href="{% url 'accounts:profile' recommend.user %}" style="text-decoration:none; display:flex; flex-direction : row; align-items : center;" >
+
+
+
+
+
+
+
+                                        
                                         <img src=" {% static 'default_avatar2.jpg' %} " alt="no image"  width="45" height="45" style="border-radius : 70%; overflow:hidden; margin-right:1rem; ">
-                                        <span style="color:gray; font-size:2rem;">{{recommend.user|upper}}</span>
+                                        <span class="detail_modal_recommend_user">{{recommend.user|upper}}</span>
                                     </a>
                                 {% endif %}
                                 <div style="margin:2rem;"></div>
                                 {% if recommend.stars == 3 %}
-                                    <p>★★★</p>
+                                    <p style = "margin-bottom:2rem;">★★★</p>
                                 {% elif recommend.stars == 2 %}
                                     <p>★★</p>
                                 {% elif recommend.stars == 1 %}
@@ -62,9 +70,9 @@
                                 {% elif recommend.stars == 0 %}
                                     <p>none</p>
                                 {% endif %} 
-                                <p>{{recommend.adress}}</p>
-                                <p>{{recommend.bestMenu}}</p>
-                                <p>{{recommend.reason}}</p>
+                                <p class="detail_modal_text">{{recommend.adress}}</p>
+                                <p class="detail_modal_text">{{recommend.bestMenu}}</p>
+                                <p class="detail_modal_text">{{recommend.reason}}</p>
                             </div>
                         </div>
                     </div>

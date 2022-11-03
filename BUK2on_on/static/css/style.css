@@ -169,10 +169,23 @@ footer {
 }
 
 .modal_image{
-  outline: 2px solid black ;
+  outline: 2px none darkgray ;
   text-align: center;
   transition: all .15s ease-in-out;
   margin-top:10px;
   width:780px;
   height: 520px;
+}
+
+.detail_modal_text {
+  margin-bottom : 1.3rem;
+  font-size:1rem; 
+  font-family: Gowun Batang; 
+  font-weight:bold;
+}
+
+.detail_modal_recommend_user {
+  color:gray; 
+  font-size:2rem;
+  font-family: Georgia, 'Times New Roman', Times, serif; 
 }
