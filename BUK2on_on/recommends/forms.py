@@ -6,27 +6,29 @@ from .custom_widgets import PreviewImageFileWidget
 
 class RestaurantForm(forms.ModelForm):
 
-    adress = forms.CharField(
-        label='Adress',
-        widget=forms.TextInput(
-            attrs={
-                'placeholder': 'adress',
-                'maxlength': 1000,
-                'size': 40,
-                }
-            ),
-        )
-
     name = forms.CharField(
     label='Name',
     widget=forms.TextInput(
         attrs={
             'placeholder': 'name',
-            'maxlength': 200,
+            'maxlength': 20,
             'size': 40,
             }
         )
     )
+
+
+    adress = forms.CharField(
+        label='Adress',
+        widget=forms.TextInput(
+            attrs={
+                'placeholder': 'adress',
+                'maxlength': 50,
+                'size': 40,
+                }
+            ),
+        )
+
 
     stars = forms.IntegerField(
     label='Stars',
@@ -44,7 +46,7 @@ class RestaurantForm(forms.ModelForm):
     widget=forms.TextInput(
         attrs={
             'placeholder': 'Best Menu',
-            'maxlength': 200,
+            'maxlength': 100,
             'size': 40,
             }
         )
@@ -55,7 +57,7 @@ class RestaurantForm(forms.ModelForm):
     widget=forms.Textarea(
         attrs={
             'placeholder': 'Reason',
-            'maxlength': 1000,
+            'maxlength': 200,
             'rows' :4,
             'cols' :42,
             }

@@ -28,7 +28,7 @@
                             <div class="modal_title_side">
                                 <span id="close_modal" class="material-icons-outlined">
                                     <div > 
-                                        <i class="fa-solid fa-x" style="color:yellowgreen;"></i>
+                                        <i class="fa-solid fa-x" style="color:darkgray;"></i>
                                     </div>
                                 </span>
                             </div>
@@ -36,7 +36,29 @@
                         <div class="modal_image" style="display: flex; flex-direction:row" >
                             <div>
                                 <div style="overflow:hidden; margin:0 auto; background-position: center; background-size:cover; width : 350px;">
-                                    <img src="{{recommend.mainImage.url}}"  alt="{% static 'main_color.jpg' %}" style="position: absolute; left:10px; width:350px; height: 520px " >
+                                    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                                        <div class="carousel-inner">
+                                          <div class="carousel-item active">
+                                            <img src="{{recommend.mainImage.url}}" class="d-block" style="left:10px; width:350px; height: 520px " alt="...">
+                                          </div>
+                                          {% for img in recommend.image.all %}
+                                                <div class="carousel-item">
+                                                <img src="{{img.image.url}}"  class="d-block" style="left:10px; width:350px; height: 520px " alt="..." >
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                          <span class="visually-hidden">Previous</span>
+                                        </button>
+                                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                          <span class="visually-hidden">Next</span>
+                                        </button>
+                                      </div>
+                                    
+                                    
+                                      {% comment %} <img src="{{recommend.mainImage.url}}"  alt="{% static 'main_color.jpg' %}" style="position: absolute; left:10px; width:350px; height: 520px " > {% endcomment %}
                                 </div>
                             </div>
                             <div style="display: flex; flex-direction:column;  align-items: flex-start; text-align : left; margin-left:20px; margin-right:20px;">
@@ -48,14 +70,6 @@
                                     </a>
                                 {% else %}
                                     <a href="{% url 'accounts:profile' recommend.user %}" style="text-decoration:none; display:flex; flex-direction : row; align-items : center;" >
-
-
-
-
-
-
-
-                                        
                                         <img src=" {% static 'default_avatar2.jpg' %} " alt="no image"  width="45" height="45" style="border-radius : 70%; overflow:hidden; margin-right:1rem; ">
                                         <span class="detail_modal_recommend_user">{{recommend.user|upper}}</span>
                                     </a>
@@ -83,16 +97,16 @@
                     <div   style="width: 320px; height : 480px; overflow:hidden; margin:0 auto; background-position: center; background-size:cover;">
                         <img id="detail_feed"  src="{{recommend.mainImage.url}}"  alt="{% static 'main_color.jpg' %}" style= "left:-50%; height:480px; width: 320px;" >
                     </div>
-                        <div></div>
+                        
                         {{recommend.name}}
                         {% if recommend.stars == 3 %}
-                            <span style='margin-left:1rem ;'>★★★</span>
+                            <p>★★★</p>
                         {% elif recommend.stars == 2 %}
-                            <span style='margin-left:1rem;'>★★</span>
+                            <p>★★</p>
                         {% elif recommend.stars == 1 %}
-                            <span style='margin-left:1rem;'>★</span>
+                            <p>★</p>
                         {% elif recommend.stars == 0 %}
-                            <span style='margin-left:1rem;'>none</span>
+                            <p>none</p>
                         {% endif %} 
                     </a>
                 </div>
