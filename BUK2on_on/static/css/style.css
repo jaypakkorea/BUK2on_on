@@ -100,8 +100,12 @@ footer {
 }
 
 .section_title{
-  color: greenyellow;
+  color: black;
   margin-bottom: 5rem;
+  font-family: 'Playfair Display', serif;  
+  background-color: greenyellow;
+  font-weight : bold;
+  
 }
 
 @keyframes slide{
@@ -188,4 +192,8 @@ footer {
   color:gray; 
   font-size:2rem;
   font-family: Georgia, 'Times New Roman', Times, serif; 
+}
+
+#detail_feed_text {
+  font-family: Gowun Batang, serif;
 }

@@ -8,7 +8,7 @@
 <div class="container">
 
     <div style="display:flex; flex-direction:row; justify-content:space-between; " >
-        <h1 class='section_title' >
+        <h1 class='section_title'>
             SEOUL 
         </h1>
         <a href="{% url 'buk2on_on:create' %}" class="btn_submit" style="background: none; border:none;  displax:flex; "><i class="fa-solid fa-plus" style="color:yellowgreen;"></i></a>
@@ -97,8 +97,8 @@
                     <div   style="width: 320px; height : 480px; overflow:hidden; margin:0 auto; background-position: center; background-size:cover;">
                         <img id="detail_feed"  src="{{recommend.mainImage.url}}"  alt="{% static 'main_color.jpg' %}" style= "left:-50%; height:480px; width: 320px;" >
                     </div>
-                        
-                        {{recommend.name}}
+                    <div id="detail_feed_text">
+                        <p id="detail_feed_text">{{recommend.name}}</p>
                         {% if recommend.stars == 3 %}
                             <p>★★★</p>
                         {% elif recommend.stars == 2 %}
@@ -108,7 +108,7 @@
                         {% elif recommend.stars == 0 %}
                             <p>none</p>
                         {% endif %} 
-                    </a>
+                    </div>
                 </div>
         
             </div>
@@ -117,6 +117,6 @@
     </div>
     
 </div>
-  
+<div style="margin:12rem;"></div>
 {% endblock content %}
 
