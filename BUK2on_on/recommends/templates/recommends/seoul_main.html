@@ -7,7 +7,7 @@
 
 <div class="container">
 
-    <div >
+    <div style="display:flex; flex-direction:row; justify-content:space-between; " >
         <h1 class='section_title' >
             SEOUL 
         </h1>
@@ -18,6 +18,7 @@
     <div style ="display:flex; flex-direction:column-reverse; flex-wrap:no-wrap;">
         <div class="a_hover" style ="display:flex; gap: 20px 2%; flex:1 1 auto; flex-direction:row; flex-wrap:wrap; justify-content:flex-start; align-itmes:stretch; ">    
             {% for recommend  in recommends %}
+            
             <div style="flex-grow:1; margin-bottom:28px;"> 
                 <div id="modal_detail_feed" class="modal_overlay">
                     <div class="modal_window">
@@ -39,7 +40,19 @@
                                 </div>
                             </div>
                             <div style="display: flex; flex-direction:column;  align-items: flex-start; text-align : left; margin-left:10px; font-size:0.8rem;">
-                                <p>{{recommend.name}}</p> <span>{{recommend.user}}</span>
+                                <div style="margin:1rem;"></div>
+                                {% if user.profile_pic %}
+                                    <a href="{% url 'accounts:profile' recommend.user %}">
+                                        <img src="{{recommend.user.profile_pic.url}}" alt="no image"  width="45" height="45" style="border-radius : 70%; overflow:hidden; margin-right:1rem;">
+                                        <span style=" text-decoration:none; color:gray; font-size:2rem; height:50%;">{{recommend.user}}</span>
+                                    </a>
+                                {% else %}
+                                    <a href="{% url 'accounts:profile' recommend.user %}" style="text-decoration:none; display:flex; flex-direction : row; align-items : center;" >
+                                        <img src=" {% static 'default_avatar2.jpg' %} " alt="no image"  width="45" height="45" style="border-radius : 70%; overflow:hidden; margin-right:1rem; ">
+                                        <span style="color:gray; font-size:2rem;">{{recommend.user|upper}}</span>
+                                    </a>
+                                {% endif %}
+                                <div style="margin:2rem;"></div>
                                 {% if recommend.stars == 3 %}
                                     <p>★★★</p>
                                 {% elif recommend.stars == 2 %}
@@ -53,11 +66,11 @@
                                 <p>{{recommend.bestMenu}}</p>
                                 <p>{{recommend.reason}}</p>
                             </div>
-                            
-
                         </div>
                     </div>
                 </div>
+
+
                 <div style= "width: 320px; height520px;">
                     <div   style="width: 320px; height : 480px; overflow:hidden; margin:0 auto; background-position: center; background-size:cover;">
                         <img id="detail_feed"  src="{{recommend.mainImage.url}}"  alt="{% static 'main_color.jpg' %}" style= "left:-50%; height:480px; width: 320px;" >
