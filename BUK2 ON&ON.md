@@ -97,3 +97,17 @@ Frontend
 참고 site
 
 https://www.sweetcheeksq.com/
+
+
+
+
+
+for 문
+
+https://forum.djangoproject.com/t/how-to-create-dynamic-modals-popups-in-template/8338/6
+
+https://parkhyeonchae.github.io/2020/04/11/django-project-23/
+
+https://carami.tistory.com/61
+
+https://thalals.tistory.com/143

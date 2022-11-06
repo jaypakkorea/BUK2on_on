@@ -9,7 +9,7 @@
 
     <div style="display:flex; flex-direction:row; justify-content:space-between; " >
         <h1 class='section_title'>
-            SEOUL 
+            S E O U L 
         </h1>
         <a id="create"   href="{% url 'buk2on_on:create' %}" >+</a>
     </div>
@@ -58,9 +58,6 @@
                                           <span class="visually-hidden">Next</span>
                                         </button>
                                       </div>
-                                    
-                                    
-                                      {% comment %} <img src="{{recommend.mainImage.url}}"  alt="{% static 'main_color.jpg' %}" style="position: absolute; left:10px; width:350px; height: 520px " > {% endcomment %}
                                 </div>
                             </div>
                             <div style="display: flex; flex-direction:column;  align-items: flex-start; text-align : left; margin-left:20px; margin-right:20px;">
@@ -94,7 +91,7 @@
                     </div>
                 </div>
 
-
+                {% comment %} 대문카드 {% endcomment %}
                 <div style= "width: 320px; height520px;">
                     <div   style="width: 320px; height : 480px; overflow:hidden; margin:0 auto; background-position: center; background-size:cover;">
                         <img id="detail_feed"  src="{{recommend.mainImage.url}}"  alt="{% static 'main_color.jpg' %}" style= "left:-50%; height:480px; width: 320px;" >

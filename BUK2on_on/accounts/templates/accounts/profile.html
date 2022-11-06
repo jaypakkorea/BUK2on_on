@@ -70,46 +70,50 @@
         </div> 
       </div>
     </section>
-  </div>
-  <div style=" border:1px solid none; height:5rem;" ></div>
+    
+    
+    <div style=" border:1px solid none; height:1.2rem;" ></div>
+    <hr>
+    <div style=" border:1px solid none; height:1.2rem;" ></div>
 
-
-
-  <hr>
-  <div style=" border:1px solid none; height:1.2rem;" ></div>
-
-  <h3 style="bottom:2rem; display:inline;"><b>{{person.username|upper}} 's </b></h3>
-  <h2 style="bottom:2rem; display:inline; font-size:1.3rem;">recommends</h2>
-  <div style=" border:1px solid none; height:2rem;" ></div>
-
-
-
-  {% for recommend  in person.restaurant_set.all  %}
-    {% if recommend.stars == 3 %}
-      <div style="margin-bottom:1.3rem;">{{recommend.name}}  <span style='margin-left:1rem ;'>★★★</span></div>
-    {% elif recommend.stars == 2 %}
-      <div style="margin-bottom:1.3rem;">{{recommend.name}}  <span style='margin-left:1rem ;'>★★</span></div>
-    {% elif recommend.stars == 1 %}
-      <div style="margin-bottom:1.3rem;">{{recommend.name}}  <span style='margin-left:1rem ;'>★</span></div>
-    {% elif recommend.stars == 0 %}
-      <div style="margin-bottom:1.3rem;">{{recommend.name}}  <span style='margin-left:1rem ;'>none</span></div>
-    {% endif %} 
-  {% endfor %}
-
-
-  <hr>
-  <a href="{% url 'accounts:update' %}" style="color:gray;" class="btn btn-outline-secondary">UPDATE ACCOUNT</a>
+    <h3 style="bottom:2rem; display:inline;"><b>{{person.username|upper}} 's </b></h3>
+    <h2 style="bottom:2rem; display:inline; font-size:1.3rem;">recommends</h2>
+    <div style=" border:1px solid none; height:2rem;" ></div>
   
-  <hr>
-  <form action="{% url 'accounts:logout' %}" method = "POST">
-    {% csrf_token %}
-    <input type="submit" value="LOGOUT"  style="color:white;" class="btn btn-outline-danger">
-  </form>
+  
+  
+    {% for recommend  in person.restaurant_set.all  %}
+      {% if recommend.stars == 3 %}
+        <div style="margin-bottom:1.3rem; margin-left:100px;">{{recommend.name}}  <span style='margin-left:1rem ;'>★★★</span></div>
+      {% elif recommend.stars == 2 %}
+        <div style="margin-bottom:1.3rem; margin-left:100px;">{{recommend.name}}  <span style='margin-left:1rem ;'>★★</span></div>
+      {% elif recommend.stars == 1 %}
+        <div style="margin-bottom:1.3rem; margin-left:100px;">{{recommend.name}}  <span style='margin-left:1rem ;'>★</span></div>
+      {% elif recommend.stars == 0 %}
+        <div style="margin-bottom:1.3rem; margin-left:100px;">{{recommend.name}}  <span style='margin-left:1rem ;'>none</span></div>
+      {% endif %} 
+    {% endfor %}
+  
+    <div style=" border:1px solid none; height:1.2rem;" ></div>
+    <hr>
+    <div style=" border:1px solid none; height:1.2rem;" ></div>
+    <a href="{% url 'accounts:update' %}" style="color:gray;" class="btn btn-outline-secondary">UPDATE ACCOUNT</a>
+    
+    <div style=" border:1px solid none; height:1.2rem;" ></div>
+    <hr>
+    <form action="{% url 'accounts:logout' %}" method = "POST">
+      {% csrf_token %}
+      <input type="submit" value="LOGOUT"  style="color:white;" class="btn btn-outline-danger">
+    </form>
+  
+    <hr>
+    
+    <a href="{% url 'buk2on_on:index' %}"><input type="submit" value="BACK"></a>
+    <a href="{% url 'buk2on_on:index' %}"><i style ="color:white" class="fa-regular fa-angles-left"></i></a>
+    <a href="{% url 'buk2on_on:index' %}"><i style ="color:white" class="fa-regular fa-house-blank"></i></a>
+    <i class="fa-regular fa-house-blank"></i>
+  </div>
 
-  <hr>
-  <a href="{% url 'buk2on_on:index' %}"><input type="submit" value="BACK"></a>
-
-</div>
 
 {% endblock content %}
 
