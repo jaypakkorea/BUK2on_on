@@ -13,9 +13,10 @@ window.addEventListener('scroll', function() {
 });
 
 
-
 const modal = document.getElementById("modal_detail_feed");
 const buttonAddFeed = document.getElementById("detail_feed");
+const buttonCloseModal = document.querySelector("#close_modal");
+
 buttonAddFeed.addEventListener("click", e => {
     modal.style.top = window.pageYOffset + 'px';
     modal.style.display = "flex";
@@ -23,18 +24,13 @@ buttonAddFeed.addEventListener("click", e => {
 });
 
 
-// const buttonCloseModal = document.querySelector("#close_modal");
-// document.addEventListener("click", e => {
-//     if(buttonAddFeed == true) {
-//         if(e.target.id != 'detail_feed') {
-//             modal.style.display = "none";
-//             document.body.style.overflowY = "visible";
-//         }
-//     }
-// });
 
-const buttonCloseModal = document.querySelector("#close_modal");
 buttonCloseModal.addEventListener("click", e => {
     modal.style.display = "none";
     document.body.style.overflowY = "visible";
 });
+
+
+
+
+

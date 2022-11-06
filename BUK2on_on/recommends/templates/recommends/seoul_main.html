@@ -11,7 +11,7 @@
         <h1 class='section_title'>
             SEOUL 
         </h1>
-        <a href="{% url 'buk2on_on:create' %}" class="btn_submit" style="background: none; border:none;  displax:flex; "><i class="fa-solid fa-plus" style="color:yellowgreen;"></i></a>
+        <a id="create"   href="{% url 'buk2on_on:create' %}" >+</a>
     </div>
 
 
@@ -20,6 +20,8 @@
             {% for recommend  in recommends %}
             
             <div style="flex-grow:1; margin-bottom:28px;"> 
+
+                {% comment %} 모달 {% endcomment %}
                 <div id="modal_detail_feed" class="modal_overlay">
                     <div class="modal_window">
                         <div class="modal_title">
@@ -28,7 +30,7 @@
                             <div class="modal_title_side">
                                 <span id="close_modal" class="material-icons-outlined">
                                     <div > 
-                                        <i class="fa-solid fa-x" style="color:darkgray;"></i>
+                                        <span class="close">&times;</span>  
                                     </div>
                                 </span>
                             </div>

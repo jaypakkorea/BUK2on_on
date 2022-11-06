@@ -105,6 +105,9 @@ footer {
   font-family: 'Playfair Display', serif;  
   background-color: greenyellow;
   font-weight : bold;
+  padding-top : 10px;
+  padding-bottom : 10px;
+
   
 }
 
@@ -196,4 +199,37 @@ footer {
 
 #detail_feed_text {
   font-family: Gowun Batang, serif;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#create_recommend{
+  background: none; 
+  border:none;  
+  display:flex;
+}
+
+#create {
+  text-decoration: none;
+  color: greenyellow;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+#create:hover,
+#create:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }
