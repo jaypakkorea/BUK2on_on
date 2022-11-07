@@ -23,17 +23,20 @@
             </div>
         {% endfor %}
 
+        
 
         {{ formset.management_form }}
 
         {% for form in formset %}
-            {% comment %} <div class="fieldWrapper">
-                {{ form.subject.errors }}
-                <label for="{{ form.subject.id_for_label }}">Image:</label>
-                {{ form.error_messages  }}
-            </div> {% endcomment %}
-            <div style="color:red; margin-left: 1rem;">{{ form }} </div> 
-            <div>{{form.error_messages}}</div>  
+        
+            {% comment %} <div style="margin-bottom: 1.5rem; margin-left: 1rem;">
+            {{ form.label_tag }} 
+            <div style="margin-top: 0.2rem;">
+            {{ form }} <span>{{ form.errors }} </span></div> {% endcomment %}
+
+
+             <div style="color:red; margin-left: 1rem;">{{ form }} </div> 
+            <div>{{form.error_messages}}</div> 
         {% endfor %}
 
         <div style="margin:8rem;"></div>

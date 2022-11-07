@@ -3,7 +3,6 @@
 
 {% block content %}
 <div style="margin:8rem;">
-
   <div class="container" >
     <h1 class='section_title' style="margin-top:1rem;">PROFILE</h1>
 
@@ -85,6 +84,7 @@
     {% for recommend  in person.restaurant_set.all  %}
       {% if recommend.stars == 3 %}
         <div style="margin-bottom:1.3rem; margin-left:100px;">{{recommend.name}}  <span style='margin-left:1rem ;'>★★★</span></div>
+        {% comment %} <a href="{% url 'buk2on_on:detail' recommend.pk %}"><div style="margin-bottom:1.3rem; margin-left:100px;">{{recommend.name}}  <span style='margin-left:1rem ;'>★★★</span></div></a> {% endcomment %}
       {% elif recommend.stars == 2 %}
         <div style="margin-bottom:1.3rem; margin-left:100px;">{{recommend.name}}  <span style='margin-left:1rem ;'>★★</span></div>
       {% elif recommend.stars == 1 %}
@@ -107,11 +107,10 @@
     </form>
   
     <hr>
+
     
-    <a href="{% url 'buk2on_on:index' %}"><input type="submit" value="BACK"></a>
-    <a href="{% url 'buk2on_on:index' %}"><i style ="color:white" class="fa-regular fa-angles-left"></i></a>
-    <a href="{% url 'buk2on_on:index' %}"><i style ="color:white" class="fa-regular fa-house-blank"></i></a>
-    <i class="fa-regular fa-house-blank"></i>
+  
+    <a href="{% url 'buk2on_on:index' %}"><i style="color: white" class="fa-solid fa-house-user"></i></a>
   </div>
 
 

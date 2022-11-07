@@ -229,7 +229,7 @@ footer {
 }
 #create:hover,
 #create:focus {
-  color: black;
+  color: white;
   text-decoration: none;
   cursor: pointer;
 }

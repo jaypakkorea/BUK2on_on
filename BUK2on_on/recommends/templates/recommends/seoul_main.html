@@ -6,7 +6,6 @@
 <div style="margin:12rem;"></div>
 
 <div class="container">
-
     <div style="display:flex; flex-direction:row; justify-content:space-between; " >
         <h1 class='section_title'>
             S E O U L 
@@ -64,8 +63,13 @@
                                 <div style="margin:1rem;"></div>
                                 {% if user.profile_pic %}
                                     <a href="{% url 'accounts:profile' recommend.user %}">
+                                        {% if recommend.user.profile_pic %}
                                         <img src="{{recommend.user.profile_pic.url}}" alt="no image"  width="45" height="45" style="border-radius : 70%; overflow:hidden; margin-right:1rem;">
                                         <span style=" text-decoration:none; color:gray; font-size:2rem; height:50%;">{{recommend.user}}</span>
+                                        {% else %}
+                                        <img src="{% static 'default_avatar2.jpg' %}" alt="no image"  width="45" height="45" style="border-radius : 70%; overflow:hidden; margin-right:1rem;">
+                                        <span style=" text-decoration:none; color:gray; font-size:2rem; height:50%;">{{recommend.user}}</span>
+                                        {% endif %}
                                     </a>
                                 {% else %}
                                     <a href="{% url 'accounts:profile' recommend.user %}" style="text-decoration:none; display:flex; flex-direction : row; align-items : center;" >
