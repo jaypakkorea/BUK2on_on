@@ -10,5 +10,5 @@ urlpatterns = [
     path('<int:restaurant_pk>/delete/', views.delete, name = 'delete'),
     path('seoul/', views.seoul_main , name = 'seoul_main'),
     path('busan/', views.busan_main , name = 'busan_main'),
-
+    path('<int:restaurant_pk>/comments/', views.comments_create , name = 'comments_create'),
 ] 

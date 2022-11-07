@@ -7,20 +7,16 @@
 
 <div class="container">
     <h1 class='section_title'>Recommend</h1>
-    
-
-
-    
 
     <form id="post_form" action="{% url 'buk2on_on:create' %}" method="POST"  enctype="multipart/form-data">
         {% csrf_token %}
-        
+
         {% for field in Recommendform %}
             <div style="margin-bottom: 1.5rem; margin-left: 1rem;">
             {{ field.label_tag }} 
             <div style="margin-top: 0.2rem;">
             {{ field }} <span>{{ field.errors }} </span></div>
-            </div>
+            </div>            
         {% endfor %}
 
         
@@ -48,6 +44,7 @@
         <input type="submit" value="SUBMIT" style="color:gray;" class="btn btn-outline-secondary">
 
         {% endif %}
+    </form>
     <hr>
 </div>
   

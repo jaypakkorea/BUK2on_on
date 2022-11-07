@@ -39,11 +39,27 @@ def busan_main(request):
 
 
 
+def comments_create(request, restaurant_pk ):
+    recommend = Restaurant.objects.get(pk=restaurant_pk)
+    comment_form = CommentForm(request.POST)
+    if comment_form.is_valid():
+        comment = comment_form.save(commit = False)
+        comment.restaurant = recommend
+        comment.save()    
+    if recommend.region == '1' :
+        return redirect('buk2on_on:seoul_main' )
+    elif recommend.region == '2' :
+        return redirect('buk2on_on:busan_main' )
+
+
 def detail(request, restaurant_pk ):
     recommend = Restaurant.objects.get(pk=restaurant_pk)
-
+    comment_form = CommentForm()
+    comments = recommend.comments.all()
     context = {
         'recommend' : recommend,
+        'comment_form' : comment_form,
+        'comments' : comments,
     }
     return render(request, 'recommends/detail.html', context)
 

@@ -18,11 +18,16 @@
     <div style="width: 30%;">
         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner" style="border:1px solid black; background-color:greenyellow; width:300px; height: 500px;">
-                {% for i in recommend.image.all %}
                 <div class="carousel-item active">
-                    <img src="{{i.image.url}}"  alt="{% static 'main_color.jpg' %}" class="d-block w-100" >
-                </div>
-                {% endfor %}
+                    <img src="{{recommend.mainImage.url}}" class="d-block" style="left:10px; width:350px; height: 520px " alt="...">
+                  </div>
+                  {% for img in recommend.image.all %}
+                        <div class="carousel-item">
+                        <img src="{{img.image.url}}"  class="d-block" style="left:10px; width:350px; height: 520px " alt="..." >
+                        </div>
+                    {% endfor %}
+                
+
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
@@ -36,6 +41,16 @@
     </div>
     {% endif %}
     <br>
+    <form action="{% url 'buk2on_on:comments_create' recommend.pk %}" method="POST">
+        {% csrf_token %}
+        {{comment_form}}
+        <input type="submit">
+    </form>
+    <ul>
+        {% for comment in comments  %}
+            <li>{{comment.content}}</li>
+        {% endfor %}
+    </ul>
     <br>
     {% comment %} <form action= "{% url 'buk2on_on:update' recommend.pk %}" method="POST">
         {% csrf_token %}

@@ -14,16 +14,25 @@ class Restaurant(models.Model):
     reason = models.CharField(max_length=200)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     mainImage = models.ImageField()
-
+    created_at = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
         return self.name
     
+
 def get_image_filename(instance, filename):
     name = instance.restaurant.name
     slug = slugify(name)
     return "restaurant_images/%s-%s" % (slug, filename)  
 
+
+class Comment(models.Model):
+    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name='comments')
+    content = models.CharField(max_length=100)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name
 
 
 class Images(models.Model):

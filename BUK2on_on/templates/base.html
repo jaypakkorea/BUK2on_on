@@ -23,7 +23,7 @@
 <body style="background-color: black ; color:white; box-sizing: border-box; ">
 
     <div class ="main_nav" >
-        <nav class="navbar navbar-dark navbar-expand-lg" style="background: rgba(0, 0, 0, .8); position:fixed;width: 100%; top: 0%;">
+        <nav class="navbar navbar-dark navbar-expand-lg" style="background: rgba(0, 0, 0, .5); position:fixed;width: 100%; top: 0%;">
             <div class="container-fluid" >
                 <a class="navbar-brand" href="{% url 'buk2on_on:index' %}" style="color:white ; font-family:impact ;-webkit-text-stroke-width: 0.01rem;-webkit-text-stroke-color:black;"> BUK2 on & on </a>
             
@@ -94,11 +94,11 @@
                         {% endif %}
                     </ul>
 
-
+                    {% comment %} search Bar
                     <div class="input-group d-flex" style="width:20%; margin-right: 20px;">
                         <input type="text" class="form-control" placeholder="search" aria-label="Recipient's username" aria-describedby="button-addon2">
                         <button class="btn btn-outline-secondary" type="button" id="button-addon2"><i class="fa-sharp fa-solid fa-magnifying-glass"></i></button>
-                    </div> 
+                    </div>  {% endcomment %}
 
 
                     {% if request.user.is_authenticated%}

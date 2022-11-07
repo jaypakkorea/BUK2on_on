@@ -75,9 +75,13 @@ class RestaurantForm(forms.ModelForm):
 
     class Meta:
         model = Restaurant
-        exclude = ['user']
+        exclude = ['user',]
 
- 
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        exclude = ["restaurant",]
  
 class ImageForm(forms.ModelForm):
 
