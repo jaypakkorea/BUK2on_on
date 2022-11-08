@@ -70,6 +70,14 @@ https://cholol.tistory.com/552
 
 
 
+django instagram
+
+https://morioh.com/p/dad3c4259232
+
+
+
+
+
 # ToDoList
 
 
@@ -78,7 +86,7 @@ DB
 
 
 
-1. 검색창, 지도 데이터 카카오 API 불러오기 (이번주 주말)
+1. 검색창, 지도 데이터 카카오 API 불러오기
 
    
 
@@ -86,9 +94,10 @@ DB
 
 Frontend
 
-1. 대문페이지가 별로...  Wo We Are와의 관계 다시 만들기
-2. 사진 업로드시 하나씩 submit 버튼 보여주기
-3. 사진 업로드 시 미리 보여주는 customized widgets
+1. 대문페이지가 별로...  Wo We Are와의 관계 다시 만들기 (이번 주말)
+2.  사용자 email 인증 (이번 주말)
+3. 사진 업로드시 하나씩 submit 버튼 보여주기 (이번 주말)
+4. 사진 업로드 시 미리 보여주는 customized widgets
 
 
 
@@ -111,3 +120,8 @@ https://parkhyeonchae.github.io/2020/04/11/django-project-23/
 https://carami.tistory.com/61
 
 https://thalals.tistory.com/143
+
+
+
+`{% now "jS F Y H:i" %}`
+

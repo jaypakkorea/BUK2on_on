@@ -38,8 +38,15 @@ def logout(request):
 def profile(request, username):
     User = get_user_model()
     person = User.objects.get(username=username)
+    print(person.followers.count())
+    if person.restaurant_set.filter(created_at='2022-11-08 13:58:27.309486') :
+        recentlyUpdate = True
+    else :
+        recentlyUpdate = False
+
     context = {
             'person' : person,
+            'recentlyUpdate': recentlyUpdate
         }
     return render(request, 'accounts/profile.html',context)
 
