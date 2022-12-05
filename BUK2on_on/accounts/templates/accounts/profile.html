@@ -17,7 +17,7 @@
 
 
       {% if recentlyUpdate == True  %}
-        <i class="fa-sharp fa-solid fa-certificate" style="color:skyblue"></i>      
+        <i class="fa-sharp fa-solid fa-certificate" style="color:skyblue; margin-right:1rem;"></i>      
       {% else %}
         
       {% endif %}
@@ -101,21 +101,22 @@
     {% endfor %}
   
     <div style=" border:1px solid none; height:1.2rem;" ></div>
-    <hr>
-    <div style=" border:1px solid none; height:1.2rem;" ></div>
-    <a href="{% url 'accounts:update' %}" style="color:gray;" class="btn btn-outline-secondary">UPDATE ACCOUNT</a>
+    {% if request.user == person %}
+      <hr>
+      <div style=" border:1px solid none; height:1.2rem;" ></div>
+      <a href="{% url 'accounts:update' %}" style="color:gray;" class="btn btn-outline-secondary">UPDATE ACCOUNT</a>
+      
+      <div style=" border:1px solid none; height:1.2rem;" ></div>
+      <hr>
+      <form action="{% url 'accounts:logout' %}" method = "POST">
+          {% csrf_token %}
+          <input type="submit" value="LOGOUT"  style="color:white;" class="btn btn-outline-danger">
+      </form>
+      <hr>
     
-    <div style=" border:1px solid none; height:1.2rem;" ></div>
-    <hr>
-    <form action="{% url 'accounts:logout' %}" method = "POST">
-      {% csrf_token %}
-      <input type="submit" value="LOGOUT"  style="color:white;" class="btn btn-outline-danger">
-    </form>
-  
-    <hr>
+    {% endif %}
 
 
-    <a href="{% url 'buk2on_on:index' %}"><i style="color: white" class="fa-solid fa-house-user"> H O M E</i></a>
   </div>
 
 

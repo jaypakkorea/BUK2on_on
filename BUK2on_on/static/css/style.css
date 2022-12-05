@@ -64,7 +64,17 @@
   text-align: right;
   margin-right: 50px;
   margin-top: 50px;
-  
+}
+
+.policy_symbols {
+  font-size: 3rem; 
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  z-index: 4;
+  color : greenyellow;
+  font-style: italic;
+  text-align: right;
+  margin-right: 50px;
+  margin-top: 50%;
 }
 
 .guide_text {
