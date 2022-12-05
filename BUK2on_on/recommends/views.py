@@ -36,6 +36,12 @@ def busan_main(request):
     }
     return render(request, "recommends/busan_main.html", context)
 
+def etc_main(request):
+    recommends = Restaurant.objects.filter(region = 3)
+    context ={
+        'recommends' : recommends,
+    }
+    return render(request, "recommends/etc_main.html", context)
 
 
 

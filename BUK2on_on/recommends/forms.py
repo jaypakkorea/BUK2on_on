@@ -79,6 +79,17 @@ class RestaurantForm(forms.ModelForm):
 
 
 class CommentForm(forms.ModelForm):
+    
+    content = forms.CharField(
+    label='Comment',
+    widget=forms.TextInput(
+        attrs={
+            'placeholder': 'plz share your opinion',
+            'maxlength': 100,
+            'size': 40,
+            }
+        )
+    )
     class Meta:
         model = Comment
         exclude = ["restaurant",]

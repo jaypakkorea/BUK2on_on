@@ -21,7 +21,7 @@
             <div style="flex-grow:1; margin-bottom:28px;"> 
 
                 {% comment %} 모달 {% endcomment %}
-                <div id="modal_detail_feed" class="modal_overlay">
+                {% comment %} <div id="modal_detail_feed" class="modal_overlay">
                     <div class="modal_window">
                         <div class="modal_title">
                             <div class="modal_title_side"></div>
@@ -93,27 +93,28 @@
                                 <div id="map" style="width:400px;height:100%;"></div>
 
                                 {% comment %} <p class="detail_modal_text">{{recommend.comments}}</p> {% endcomment %}
-                            </div>
+                            {% comment %} </div>
                         </div>
                     </div>
-                </div>
+                </div>  {% endcomment %}
 
                 {% comment %} 대문카드 {% endcomment %}
                 <div style= "width: 320px; height520px;">
-                    <div   style="width: 320px; height : 480px; overflow:hidden; margin:0 auto; background-position: center; background-size:cover;">
+                    <a href="{% url 'buk2on_on:detail' recommend.pk %}"  style="width: 320px; height : 480px; overflow:hidden; margin:0 auto; background-position: center; background-size:cover;">
                         <img id="detail_feed"  src="{{recommend.mainImage.url}}"  alt="{% static 'main_color.jpg' %}" style= "left:-50%; height:480px; width: 320px;" >
-                    </div>
+                    </a>
                     <div id="detail_feed_text">
-                        <p id="detail_feed_text">{{recommend.name}}</p>
+                        <p id="detail_feed_text">{{recommend.name}}
                         {% if recommend.stars == 3 %}
-                            <p>★★★</p>
+                            <span>★★★</span>
                         {% elif recommend.stars == 2 %}
-                            <p>★★</p>
+                            <span>★★</span>
                         {% elif recommend.stars == 1 %}
-                            <p>★</p>
+                            <span>★</span>
                         {% elif recommend.stars == 0 %}
-                            <p>none</p>
+                            <span>none</span>
                         {% endif %} 
+                        </p>
                     </div>
                 </div>
         
