@@ -36,6 +36,7 @@ def busan_main(request):
     }
     return render(request, "recommends/busan_main.html", context)
 
+
 def etc_main(request):
     recommends = Restaurant.objects.filter(region = 3)
     context ={
@@ -56,6 +57,8 @@ def comments_create(request, restaurant_pk ):
         return redirect('buk2on_on:seoul_main' )
     elif recommend.region == '2' :
         return redirect('buk2on_on:busan_main' )
+    elif recommend.region == '3' :
+        return redirect('buk2on_on:etc_main' )
 
 
 def detail(request, restaurant_pk ):
@@ -92,6 +95,8 @@ def create(request):
                 return redirect('buk2on_on:seoul_main' )
             elif request.POST['region'] == '2' :
                 return redirect('buk2on_on:busan_main' )
+            elif request.POST['region'] == '3' :
+                return redirect('buk2on_on:etc_main' )
 
     else:
         Recommendform = RestaurantForm()
@@ -112,6 +117,8 @@ def delete(request, restaurant_pk):
         return redirect('buk2on_on:seoul_main' )
     if restaurant_region == '2':
             return redirect('buk2on_on:busan_main' )
+    if restaurant_region == '3':
+            return redirect('buk2on_on:etc_main' )
 
 
 @login_required
